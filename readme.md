@@ -17,6 +17,7 @@ Actual contributors of the project:
 <li>Pablo Lara</li>
 <li>Ramón Sánchez</li>
 <li>Valentín Pedrosa</li>
+</ul>
 
 ### License
 
