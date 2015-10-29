@@ -12,10 +12,11 @@ Documentation for the framework can be found on the [Laravel website](http://lar
 
 Actual contributors of the project:
 
-José Conejero
-Pablo Lara
-Ramón Sánchez
-Valentín Pedrosa
+<ul>
+<li>José Conejero</li>
+<li>Pablo Lara</li>
+<li>Ramón Sánchez</li>
+<li>Valentín Pedrosa</li>
 
 ### License
 
