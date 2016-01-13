@@ -1,0 +1,50 @@
+/**
+ * Handcrafted with ♥ Beebit Solutions
+ * Real coffee was used in this project development
+ * Licensed under MIT License
+ * contacto@beebit.es
+ */
+$padding: 50px;
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($params) {
+  transition: $params;
+  -moz-transition: $params;
+  -webkit-transition: $params;
+  -o-transition: $params;
+}
+
+.uppercase
+{
+  text-transform: uppercase;
+}
+
+.hidden
+{
+  display:none;
+}
+
+.padded
+{
+  padding-top:$padding;
+  &-x2
+  {
+    padding-top:$padding*2;
+  }
+  &-x3
+  {
+    padding-top:$padding*3;
+  }
+  &-x4
+  {
+    padding-top:$padding*4;
+  }
+}
