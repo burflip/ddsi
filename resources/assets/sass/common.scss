@@ -22,9 +22,33 @@ $padding: 50px;
   -o-transition: $params;
 }
 
+@mixin shadow($opacity) {
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, $opacity);
+  -moz-box-shadow:    1px 1px 5px 0px rgba(0, 0, 0, $opacity);
+  box-shadow:         1px 1px 5px 0px rgba(0, 0, 0, $opacity);
+}
+
+@mixin fullscreen-bg($url) {
+  background: url($url) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .uppercase
 {
   text-transform: uppercase;
+}
+
+.italic
+{
+  font-style: italic;
+}
+
+.bold
+{
+  font-weight: bold;
 }
 
 .hidden
@@ -47,4 +71,16 @@ $padding: 50px;
   {
     padding-top:$padding*4;
   }
+}
+
+html {
+  height: 100%;
+}
+body{
+  min-height: 100%;
+}
+
+.border
+{
+  border:1px solid black;
 }

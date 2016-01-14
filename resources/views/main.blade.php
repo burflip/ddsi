@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/components/font-awesome/css/font-awesome.min.css">
     <link href="/css/style.min.css" type="text/css" rel="stylesheet" media="screen"/>
 </head>
-<body>
+<body @yield('body_class')>
 @yield('content')
         <!--  Scripts-->
 <script src="/components/jquery/dist/jquery.min.js"></script>
