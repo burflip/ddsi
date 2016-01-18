@@ -28,3 +28,9 @@ Route::post('password', ['as' => 'password.submit', 'uses' => 'Auth\PasswordCont
 // Password reset routes...
 Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@getReset']);
 Route::post('password/reset', ['as' => 'password.reset.submit', 'uses' => 'Auth\PasswordController@postReset']);
+
+Route::resources("cliente","ClienteController");
+Route::resources("factura","FacturaController");
+Route::resources("impuesto","ImpuestoController");
+Route::resources("producto","ProductoController");
+Route::resources("servicio","ServicioController");
