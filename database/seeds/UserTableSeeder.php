@@ -16,6 +16,8 @@ class UserTableSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('ddsi'),
             'remember_token' =>str_random(10),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now(),
         ]);
 
         $user = App\User::where('email', '=', 'admin@gmail.com')->first();
@@ -26,6 +28,8 @@ class UserTableSeeder extends Seeder
             'email'=>'administrativo@gmail.com',
             'password'=>bcrypt('ddsi'),
             'remember_token' =>str_random(10),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now(),
         ]);
 
         $user = App\User::where('email', '=', 'administrativo@gmail.com')->first();
@@ -36,6 +40,8 @@ class UserTableSeeder extends Seeder
             'email'=>'financiero@gmail.com',
             'password'=>bcrypt('ddsi'),
             'remember_token' =>str_random(10),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now(),
         ]);
 
         $user = App\User::where('email', '=', 'financiero@gmail.com')->first();
