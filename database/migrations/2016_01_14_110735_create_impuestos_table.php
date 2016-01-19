@@ -15,6 +15,24 @@ class CreateImpuestosTable extends Migration
         Schema::create('impuestos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('user_id')->index()->unsigned();
+            $table->integer('last_modification_user_id')->index()->unsigned();
+
+            $table->string('name');
+            $table->boolean('aplicable_to_all')->default(1);
+            $table->decimal('fixed_amount')->default(0);
+            $table->integer('percentage')->default(0);
+        });
+
+        Schema::table('impuestos', function(Blueprint $table)
+        {
+            $table->foreign("user_id")
+                ->references("id")
+                ->on("users");
+            $table->foreign("last_modification_user_id")
+                ->references("id")
+                ->on("users");
         });
     }
 

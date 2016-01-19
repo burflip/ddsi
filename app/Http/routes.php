@@ -29,8 +29,18 @@ Route::post('password', ['as' => 'password.submit', 'uses' => 'Auth\PasswordCont
 Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@getReset']);
 Route::post('password/reset', ['as' => 'password.reset.submit', 'uses' => 'Auth\PasswordController@postReset']);
 
-Route::resources("cliente","ClienteController");
-Route::resources("factura","FacturaController");
-Route::resources("impuesto","ImpuestoController");
-Route::resources("producto","ProductoController");
-Route::resources("servicio","ServicioController");
+Entrust::routeNeedsRole('cliente*',['administrativo','admin'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('presupuesto*',['administrativo','admin'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('proyecto*',['administrativo','admin'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('impuesto*',['financiero','admin'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('factura*',['financiero','admin'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('producto*',['admin'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('servicio*',['servicio'],Redirect::to('dashboard'),false);
+
+Route::resource("cliente","ClienteController");
+Route::resource("factura","FacturaController");
+Route::resource("impuesto","ImpuestoController");
+Route::resource("presupuesto","PresupuestoController");
+Route::resource("producto","ProductoController");
+Route::resource("proyecto","ProyectoController");
+Route::resource("servicio","ServicioController");
