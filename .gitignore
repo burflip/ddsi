@@ -6,3 +6,4 @@ Homestead.json
 /storage/database.sqlite
 _ide_helper.php
 /public/components
+.env

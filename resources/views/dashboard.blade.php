@@ -27,7 +27,7 @@ $i=1;
             <div class="col s12">
                 <div class="row">
                     <div class="col s12">
-                        <h1 class="grey-text text-darken-4">Bienvenido a tu panel, Pablo</h1>
+                        <h1 class="grey-text text-darken-4">Bienvenido a tu panel, {{ $name }}</h1>
                         <h5 class="grey-text text-darken-1">¿Qué deseas hacer?</h5>
                     </div>
                 </div>

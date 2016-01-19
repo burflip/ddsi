@@ -16,6 +16,11 @@
     @include('_search', ['search_route' => 'impuestos.search', 'searchbox_text' => 'Buscar un impuesto...'])
 @endsection
 
+<!-- Nombre del campo field -->
+<div class="input-field col s12">
+    {!! Form::text("nombre", null, ["id" => "nombre","class" => "validate"]) !!}
+    {!! Form::label("nombre", "Nombre del campo:") !!}
+</div>
 @section('table')
     <thead>
     <tr>

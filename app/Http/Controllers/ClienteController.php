@@ -26,7 +26,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +37,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente->name = $request->input("name");
     }
 
     /**
@@ -59,7 +59,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = $id;
+        return view("clientes.edit", ["cliente" => $cliente] );
     }
 
     /**
@@ -83,5 +84,10 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function test()
+    {
+        dd("HOLA");
     }
 }

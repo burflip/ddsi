@@ -13,9 +13,11 @@
 
 Route::get('dashboard', function()
 {
-    return view('dashboard');
+    $username = Auth::user()->name;
+    return view('dashboard', ["name" => $username]);
 })->name('dashboard');
 
+Route::get("test","ClienteController@test");
 // Authentication routes...
 Route::get('/', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 Route::post('/login', ['as' => 'login.submit', 'uses' => 'Auth\AuthController@postLogin']);

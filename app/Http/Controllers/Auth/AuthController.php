@@ -23,10 +23,18 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    public function redirectPath()
+    {
+        // Logic that determines where to send the user
+        if (\Auth::user()->type == 'admin') {
+            return '/admin';
+        }
+
+        return '/dashboard';
+    }
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
      */
     public function __construct()
     {

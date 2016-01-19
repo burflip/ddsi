@@ -20,11 +20,11 @@ class CreateProductosTable extends Migration
             $table->integer('last_modification_user_id')->index()->unsigned();
 
             $table->string('product_name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->decimal('price');
-            $table->string('img_url');
-            $table->string('development_time');
-            $table->string('status');
+            $table->string('img_url')->nullable();
+            $table->string('development_time')->nullable();
+            $table->string('status')->nullable();
         });
 
         Schema::table('productos', function(Blueprint $table)
