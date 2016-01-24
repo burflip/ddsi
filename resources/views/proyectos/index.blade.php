@@ -30,9 +30,9 @@
     @foreach($proyectos as $proyecto)
         <tr>
             <td>{{ $proyecto->id }}</td>
-            <td>{{ $proyecto->nombre }}</td>
+            <td>{{ $proyecto->name }}</td>
             <td class="date">{{ $proyecto->created_at }}</td>
-            <td>{{ $proyecto->total }}</td>
+            <td>{{ $proyecto->total_amount }}</td>
             <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('proyecto.show', ['id' => $proyecto->id]) }}"><i class="material-icons">visibility</i></a></td>
         </tr>
     @endforeach
