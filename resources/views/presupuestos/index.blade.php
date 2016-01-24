@@ -9,11 +9,11 @@
 @endsection
 
 @section('elem_description')
-    Estos son todos los presupuestos, ¿quieres crear un <a href="{!! route('presupuestos.create') !!}">nuevo presupuesto</a>?
+    Estos son todos los presupuestos, ¿quieres crear un <a href="{!! route('presupuesto.create') !!}">nuevo presupuesto</a>?
 @endsection
 
 @section('search')
-    @include('_search', ['search_route' => 'presupuestos.search', 'searchbox_text' => 'Buscar un presupuesto...'])
+    @include('_search', ['search_route' => 'presupuesto.show', 'searchbox_text' => 'Buscar un presupuesto...'])
 @endsection
 
 @section('table')
@@ -39,6 +39,6 @@
     </tbody>
 @endsection
 
-@section('pagination')
+{{--@section('pagination')
     {!! $presupuestos->appends(Request::only('search'))->render() !!}
-@endsection
+@endsection --}}
