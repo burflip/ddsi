@@ -18,7 +18,7 @@ class ProyectoController extends Controller
     public function index()
     {
         $proyectos=Proyecto::all();
-        return view('proyectos.index')->with('proyectos',$proyectos);
+        return view('proyectos.index',compact('proyectos'));
     }
 
     /**
@@ -40,9 +40,19 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        Proyecto::create($request);
+        $project = new Proyecto;
+        $project->user_id=$request['user_id'];
+        $project->last_modification_user_id=$request['user_id'];;
+        $project->name=$request['name'];
+        $project->img_url=$request['img_url'];
+        $project->total_amount=$request['total_amount'];
+        $project->starting_date=$request['starting_date'];
+        $project->ending_date=$request['ending_date'];
+        $project->notes=$request['notes'];
 
-        redirect('proyecto');
+        $project->save();
+
+        return redirect('proyecto');
     }
 
     /**
@@ -53,8 +63,8 @@ class ProyectoController extends Controller
      */
     public function show($id)
     {
-        $proyecto=Proyectos::where('id','=',$id)->findOrFail();
-        return view('proyectos.show')->with('proyecto',$proyecto);
+        $proyecto=Proyecto::findOrFail($id);
+        return view('proyectos.show',compact('proyecto'));
     }
 
     /**
@@ -65,7 +75,8 @@ class ProyectoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proyecto=Proyecto::findOrFail($id);
+        return view('proyectos.edit',compact('proyecto'));
     }
 
     /**
@@ -77,7 +88,7 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**
