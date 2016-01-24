@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Presupuesto;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        //
+        $presupuestos=Presupuesto::all();
+        return view('presupuestos.index')->with('presupuestos',$presupuestos);
     }
 
     /**
@@ -26,7 +28,7 @@ class PresupuestoController extends Controller
      */
     public function create()
     {
-        //
+        return view('presupuestos.create');
     }
 
     /**
@@ -37,7 +39,9 @@ class PresupuestoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Presupuesto::create($request);
+
+        redirect('prespuesto');
     }
 
     /**
@@ -48,7 +52,8 @@ class PresupuestoController extends Controller
      */
     public function show($id)
     {
-        //
+        $proyecto=Proyectos::where('id','=',$id)->findOrFail();
+        return view('proyectos.show')->with('proyecto',$proyecto);
     }
 
     /**
