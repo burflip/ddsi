@@ -1,8 +1,8 @@
 <?php
 $dashboard_elems = [
         "#" => ["add_database", "Crear productos o servicios"],
-        "#productos" => ["shop", "Productos y servicios"],
-        "#proyectos" => ["opened_folder", "Proyectos"],
+        "productos" => ["shop", "Productos y servicios"],
+        "proyecto" => ["opened_folder", "Proyectos"],
         "#nuevo_proyecto" => ["idea", "Crear proyecto"],
         "#clientes" => ["contacts", "Agenda"],
         "#nuevo_cliente" => ["good_decision", "Nuevo cliente"],
@@ -10,6 +10,8 @@ $dashboard_elems = [
         "#nueva_factura" => ["invite", "Nueva factura"],
         "#usuarios" => ["address_book", "Mis usuarios"],
         "#nuevo_usuario" => ["key", "Nuevo usuario"],
+        "presupuesto" => ["money_transfer","Presupuestos"],
+        "#nuevo_presupuesto" => ["calculator","Nuevo presupuesto"]
 
 ];
 $i=1;
