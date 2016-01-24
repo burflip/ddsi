@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Proyecto;
 
 class ProyectoController extends Controller
 {
@@ -16,7 +17,8 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyectos=Proyecto::all();
+        return view('proyectos.index')->with('proyectos',$proyectos);
     }
 
     /**
@@ -26,7 +28,8 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        //
+        return view('proyectos.create');
+
     }
 
     /**
@@ -37,7 +40,9 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Proyecto::create($request);
+
+        redirect('proyecto');
     }
 
     /**
@@ -48,7 +53,8 @@ class ProyectoController extends Controller
      */
     public function show($id)
     {
-        //
+        $proyecto=Proyectos::where('id','=',$id)->findOrFail();
+        return view('proyectos.show')->with('proyecto',$proyecto);
     }
 
     /**
@@ -84,4 +90,5 @@ class ProyectoController extends Controller
     {
         //
     }
+
 }
