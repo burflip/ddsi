@@ -9,11 +9,11 @@
 @endsection
 
 @section('elem_description')
-    Estos son todos los proyectos, ¿quieres crear un <a href="{!! route('proyectos.create') !!}">nuevo proyecto</a>?
+    Estos son todos los proyectos, ¿quieres crear un <a href="{!! route('proyecto.create') !!}">nuevo proyecto</a>?
 @endsection
 
 @section('search')
-    @include('_search', ['search_route' => 'proyectos.search', 'searchbox_text' => 'Buscar un proyecto...'])
+    @include('_search', ['search_route' => 'proyecto.show', 'searchbox_text' => 'Buscar un proyecto...'])
 @endsection
 
 @section('table')
@@ -33,12 +33,13 @@
             <td>{{ $proyecto->nombre }}</td>
             <td class="date">{{ $proyecto->created_at }}</td>
             <td>{{ $proyecto->total }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('proyectos.show', ['id' => $proyecto->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('proyecto.show', ['id' => $proyecto->id]) }}"><i class="material-icons">visibility</i></a></td>
         </tr>
     @endforeach
     </tbody>
 @endsection
 
-@section('pagination')
+{{--@section('pagination')
     {!! $proyectos->appends(Request::only('search'))->render() !!}
 @endsection
+        --}}
