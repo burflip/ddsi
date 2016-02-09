@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,13 +40,20 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $producto = Producto::findOrNew($request->input("name"));
-        session()->flash('flash_message', 'Se ha creado el producto con éxito');
+        try{
+            $producto = new Producto();
+            $producto->user_id = Auth::id();
+            $this->silentSave($producto,$request);
+        } catch (ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+
+        session()->flash('flash_message', 'Se ha creado el producto #'.$producto->id.' - '.$producto->name.' con éxito');
+        return redirect()->route("dashboard");
     }
 
     public function silentSave(&$producto, Request $request,$save = true)
     {
-        $producto->user_id = Auth::id();
         $producto->last_modification_user_id = Auth::id();
         $producto->name = $request->input("name");
         $producto->description = $request->input("description");
@@ -65,7 +73,8 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-
+        $producto = Producto::findOrFail($id);
+        return view("productos.show",compact("producto"));
     }
 
     /**
@@ -76,7 +85,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        return view("productos.edit",compact("producto"));
     }
 
     /**
@@ -88,7 +98,15 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $producto = Producto::findOrFail($id);
+            $this->silentSave($producto,$request);
+        } catch (ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+
+        session()->flash('flash_message', 'Se ha creado el producto #'.$producto->id.' - '.$producto->name.' con éxito');
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -99,6 +117,13 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        $producto->delete();
+    }
+
+    public function search($id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view("productos.show",compact("producto"));
     }
 }
