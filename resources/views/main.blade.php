@@ -33,6 +33,11 @@
 <script src="/components/materialid/dist/materialid.min.js"></script>
 <script src="/components/materialid/language/es_ES.js"></script>
 <script src="/js/ddsi.min.js"></script>
+@if(Session::has('flash_message'))
+    <script>
+        Materialize.toast('{{session('flash_message')}}',6000);
+    </script>
+@endif
 @yield('scripts')
 </body>
 </html>

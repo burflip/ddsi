@@ -28,7 +28,7 @@
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Precio</th>
-        <th>Ver</th>
+        <th class="center-align">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -38,7 +38,10 @@
             <td>{{ $producto->name }}</td>
             <td>{{ $producto->description }}</td>
             <td>{{ $producto->price }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('producto.show', ['id' => $producto->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td class="center-align">
+                <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('producto.edit', ['id' => $producto->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('producto.show', ['id' => $producto->id]) }}"><i class="material-icons">visibility</i></a>
+            </td>
         </tr>
     @endforeach
     </tbody>

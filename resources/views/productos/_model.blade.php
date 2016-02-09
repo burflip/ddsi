@@ -13,8 +13,8 @@
 
     <!-- Description field -->
     <div class="input-field col s12">
-        <textarea id="description" name="description" class="materialize-textarea"></textarea>
-        <label for="description">Descripción de producto:</label>
+        {!! Form::textarea("description", null, ["id" => "description","class" => "materialize-textarea"]) !!}
+        {!! Form::label("description", "Descripción de producto") !!}
     </div>
 
     <!-- IMG_URL field -->

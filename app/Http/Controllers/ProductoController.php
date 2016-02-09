@@ -63,7 +63,7 @@ class ProductoController extends Controller
      */
     public function silentSave(&$producto, Request $request,$save = true)
     {
-        $producto->last_modification_user_id = Auth::id();
+        $producto->last_update_user_id = Auth::id();
         $producto->name = $request->input("name");
         $producto->description = $request->input("description");
         $producto->price = $request->input("price");
@@ -128,6 +128,8 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
         $producto->delete();
+        session()->flash('flash_message', 'Se ha eliminado el producto #'.$id.' con éxito');
+        return redirect()->route("producto.index");
     }
 
     /**

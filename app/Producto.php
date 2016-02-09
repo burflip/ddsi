@@ -11,8 +11,13 @@ class Producto extends Model
         return $this->belongsToMany('App\Factura');
     }
 
-    public function usuario()
+    public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function last_update_user()
+    {
+        return $this->belongsTo('App\User','last_update_user_id');
     }
 }

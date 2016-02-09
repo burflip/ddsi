@@ -17,7 +17,7 @@ class CreateProductosTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id')->index()->unsigned();
-            $table->integer('last_modification_user_id')->index()->unsigned();
+            $table->integer('last_update_user_id')->index()->unsigned();
 
             $table->string('name');
             $table->text('description')->nullable();
@@ -32,7 +32,7 @@ class CreateProductosTable extends Migration
             $table->foreign("user_id")
                 ->references("id")
                 ->on("users");
-            $table->foreign("last_modification_user_id")
+            $table->foreign("last_update_user_id")
                 ->references("id")
                 ->on("users");
         });
