@@ -52,6 +52,14 @@ class ProductoController extends Controller
         return redirect()->route("dashboard");
     }
 
+    /**
+     * Basic save operation used for update & store.
+     * 
+     * @param $producto
+     * @param Request $request
+     * @param bool $save
+     * @return mixed
+     */
     public function silentSave(&$producto, Request $request,$save = true)
     {
         $producto->last_modification_user_id = Auth::id();
@@ -121,6 +129,12 @@ class ProductoController extends Controller
         $producto->delete();
     }
 
+    /**
+     * Returns an specific searched element
+     *
+     * @param $id
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function search($id)
     {
         $producto = Producto::findOrFail($id);
