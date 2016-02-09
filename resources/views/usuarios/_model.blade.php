@@ -1,6 +1,6 @@
 <?php
 if(isset($usuario)) {
-    $current_role = $usuario->roles()->get()->first()->display_name;
+    $current_role = $usuario->roles()->get()->first()->name;
 } else {
     $current_role = null;
 }

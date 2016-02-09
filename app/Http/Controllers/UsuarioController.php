@@ -98,7 +98,12 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = User::findOrFail($id);
-        return view("usuarios.edit",compact("usuario"));
+        $r = Role::all();
+        $roles = [];
+        foreach($r as $role) {
+            $roles[$role["name"]] = $role["display_name"];
+        }
+        return view("usuarios.edit",compact("usuario","roles"));
     }
 
     /**
