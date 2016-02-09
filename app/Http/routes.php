@@ -46,3 +46,5 @@ Route::resource("presupuesto","PresupuestoController");
 Route::resource("producto","ProductoController");
 Route::resource("proyecto","ProyectoController");
 Route::resource("servicio","ServicioController");
+
+Route::get("producto/buscar/{name}",["as" => "producto.search", "uses" => "ProductoController@search"]);

@@ -1,7 +1,9 @@
 <?php
 $dashboard_elems = [
-        "#" => ["add_database", "Crear productos o servicios"],
-        "productos" => ["shop", "Productos y servicios"],
+        route("producto.create") => ["add_database", "Crear productos"],
+        route("servicio.create") => ["add_database", "Crear servicios"],
+        route("producto.index") => ["shop", "Productos"],
+        route("servicio.index") => ["shop", "Servicios"],
         "proyecto" => ["opened_folder", "Proyectos"],
         "proyecto/create" => ["idea", "Crear proyecto"],
         "#clientes" => ["contacts", "Agenda"],

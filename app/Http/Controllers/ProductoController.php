@@ -18,7 +18,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all()->paginate(10);
+        $productos = Producto::paginate(15);
         return view("productos.index",compact("productos"));
     }
 
@@ -135,9 +135,21 @@ class ProductoController extends Controller
      * @param $id
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function search($id)
+    public function find($id)
     {
         $producto = Producto::findOrFail($id);
         return view("productos.show",compact("producto"));
+    }
+
+    /**
+     * Searches for an especific product name
+     *
+     * @param $name
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function search($name)
+    {
+        $productos = Producto::where("name",$name)->paginate(10);
+        return view("productos.index",compact("productos"));
     }
 }
