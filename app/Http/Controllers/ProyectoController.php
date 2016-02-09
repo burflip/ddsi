@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Proyecto;
+use Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Proyecto;
 
 class ProyectoController extends Controller
 {
@@ -17,7 +19,7 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        $proyectos=Proyecto::all();
+        $proyectos = Proyecto::orderBy('created_at', 'desc')->paginate(15);
         return view('proyectos.index',compact('proyectos'));
     }
 
@@ -29,7 +31,6 @@ class ProyectoController extends Controller
     public function create()
     {
         return view('proyectos.create');
-
     }
 
     /**
@@ -40,21 +41,39 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        $project = new Proyecto;
-        $project->user_id=$request['user_id'];
-        $project->last_modification_user_id=$request['user_id'];;
-        $project->name=$request['name'];
-        $project->img_url=$request['img_url'];
-        $project->total_amount=$request['total_amount'];
-        $project->starting_date=$request['starting_date'];
-        $project->ending_date=$request['ending_date'];
-        $project->notes=$request['notes'];
+        try{
+            $proyecto = new Proyecto();
+            $proyecto->user_id = Auth::id();
+            $this->silentSave($proyecto,$request);
+        } catch (ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
 
-        $project->save();
-
-        return redirect('proyecto');
+        session()->flash('flash_message', 'Se ha creado el proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
+        return redirect()->route("proyecto.index");
     }
 
+    /**
+     * Basic save operation used for update & store.
+     *
+     * @param $proyecto
+     * @param Request $request
+     * @param bool $save
+     * @return mixed
+     */
+    public function silentSave(&$proyecto, Request $request,$save = true)
+    {
+        $proyecto->last_modification_user_id=Auth::id();
+        $proyecto->name=$request->input('name');
+        $proyecto->img_url=$request->input('img_url');
+        $proyecto->total_amount=$request->input('total_amount');
+        $proyecto->starting_date=$request->input('starting_date');
+        $proyecto->ending_date=$request->input('ending_date');
+        $proyecto->notes=$request->input('notes');
+        ($save) ? $proyecto->save() : null;
+        return $proyecto;
+    }
+    
     /**
      * Display the specified resource.
      *
@@ -88,7 +107,16 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        try{
+            $proyecto = Proyecto::findOrFail($id);
+            $this->silentSave($proyecto,$request);
+        } catch (ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+
+        session()->flash('flash_message', 'Se ha modificado el proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
+        return redirect()->route("dashboard");
+
     }
 
     /**
@@ -99,7 +127,34 @@ class ProyectoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->delete();
+        session()->flash('flash_message', 'Se ha eliminado el proyecto #'.$id.' con éxito');
+        return redirect()->route("proyecto.index");
+    }
+
+    /**
+     * Returns an specific searched element
+     *
+     * @param $id
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function find($id)
+    {
+        $proyecto = Proyecto::findOrFail($id);
+        return view("productos.show",compact("proyecto"));
+    }
+
+    /**
+     * Searches for an especific product name
+     *
+     * @param $name
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function search($name)
+    {
+        $proyectos = Proyecto::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
+        return view("proyectos.index",compact("proyectos"));
     }
 
 }
