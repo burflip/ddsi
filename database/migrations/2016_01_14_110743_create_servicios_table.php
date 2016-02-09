@@ -17,9 +17,9 @@ class CreateServiciosTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id')->index()->unsigned();
-            $table->integer('last_modification_user_id')->index()->unsigned();
+            $table->integer('last_update_user_id')->index()->unsigned();
 
-            $table->string('product_name');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price');
             $table->string('img_url')->nullable();
@@ -35,7 +35,7 @@ class CreateServiciosTable extends Migration
             $table->foreign("user_id")
                 ->references("id")
                 ->on("users");
-            $table->foreign("last_modification_user_id")
+            $table->foreign("last_update_user_id")
                 ->references("id")
                 ->on("users");
         });

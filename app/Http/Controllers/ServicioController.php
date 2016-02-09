@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Servicio;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +18,8 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        //
+        $servicios = Servicio::orderBy('created_at', 'desc')->paginate(15);
+        return view("servicios.index",compact("servicios"));
     }
 
     /**
@@ -26,7 +29,7 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        //
+        return view("servicios.create");
     }
 
     /**
@@ -37,7 +40,40 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $servicio = new Servicio();
+            $servicio->user_id = Auth::id();
+            $this->silentSave($servicio,$request);
+        } catch (ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+
+        session()->flash('flash_message', 'Se ha creado el servicio #'.$servicio->id.' - '.$servicio->name.' con éxito');
+        return redirect()->route("servicio.index");
+    }
+
+    /**
+     * Basic save operation used for update & store.
+     *
+     * @param $servicio
+     * @param Request $request
+     * @param bool $save
+     * @return mixed
+     */
+    public function silentSave(&$servicio, Request $request,$save = true)
+    {
+        $servicio->last_update_user_id = Auth::id();
+        $servicio->name = $request->input("name");
+        $servicio->description = $request->input("description");
+        $servicio->price = $request->input("price");
+        $servicio->img_url = $request->input("img_url");
+        $servicio->development_time = $request->input("development_time");
+        $servicio->starting_date = $request->input("starting_date_submit");
+        $servicio->ending_date = $request->input("ending_date_submit");
+        $servicio->invoice_period = $request->input("invoice_period");
+        $servicio->status = $request->input("status");
+        ($save) ? $servicio->save() : null;
+        return $servicio;
     }
 
     /**
@@ -48,7 +84,8 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
-        //
+        $servicio = Servicio::findOrFail($id);
+        return view("servicios.show",compact("servicio"));
     }
 
     /**
@@ -59,7 +96,8 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $servicio = Servicio::findOrFail($id);
+        return view("servicios.edit",compact("servicio"));
     }
 
     /**
@@ -71,7 +109,15 @@ class ServicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $servicio = Servicio::findOrFail($id);
+            $this->silentSave($servicio,$request);
+        } catch (ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+
+        session()->flash('flash_message', 'Se ha creado el servicio #'.$servicio->id.' - '.$servicio->name.' con éxito');
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -82,6 +128,33 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $servicio = Servicio::findOrFail($id);
+        $servicio->delete();
+        session()->flash('flash_message', 'Se ha eliminado el servicio #'.$id.' con éxito');
+        return redirect()->route("servicio.index");
+    }
+
+    /**
+     * Returns an specific searched element
+     *
+     * @param $id
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function find($id)
+    {
+        $servicio = Servicio::findOrFail($id);
+        return view("servicios.show",compact("servicio"));
+    }
+
+    /**
+     * Searches for an especific product name
+     *
+     * @param $name
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function search($name)
+    {
+        $servicios = Servicio::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
+        return view("servicios.index",compact("servicios"));
     }
 }

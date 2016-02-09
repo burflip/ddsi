@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "font-awesome": "~4.5.0",
-    "flat-color-icons": "~1.0.2"
+    "flat-color-icons": "~1.0.2",
+    "pickadate": "^3.5.6"
   }
 }

@@ -32,6 +32,9 @@
 <script src="/components/Materialize/dist/js/materialize.min.js"></script>
 <script src="/components/materialid/dist/materialid.min.js"></script>
 <script src="/components/materialid/language/es_ES.js"></script>
+<script src="/components/pickadate/lib/compressed/picker.js"></script>
+<script src="/components/pickadate/lib/compressed/picker.date.js"></script>
+<script src="/components/pickadate/lib/compressed/translations/es_ES.js"></script>
 <script src="/js/ddsi.min.js"></script>
 @if(Session::has('flash_message'))
     <script>

@@ -37,14 +37,17 @@ Entrust::routeNeedsRole('proyecto*',['administrativo','admin'],Redirect::to('das
 Entrust::routeNeedsRole('impuesto*',['financiero','admin'],Redirect::to('dashboard'),false);
 Entrust::routeNeedsRole('factura*',['financiero','admin'],Redirect::to('dashboard'),false);
 Entrust::routeNeedsRole('producto*',['admin'],Redirect::to('dashboard'),false);
-Entrust::routeNeedsRole('servicio*',['servicio'],Redirect::to('dashboard'),false);
+Entrust::routeNeedsRole('servicio*',['admin'],Redirect::to('dashboard'),false);
 
+
+Route::resource("producto","ProductoController");
+Route::resource("servicio","ServicioController");
 Route::resource("cliente","ClienteController");
 Route::resource("factura","FacturaController");
 Route::resource("impuesto","ImpuestoController");
 Route::resource("presupuesto","PresupuestoController");
-Route::resource("producto","ProductoController");
 Route::resource("proyecto","ProyectoController");
-Route::resource("servicio","ServicioController");
+
 
 Route::get("producto/buscar/{name}",["as" => "producto.search", "uses" => "ProductoController@search"]);
+Route::get("servicio/buscar/{name}",["as" => "servicio.search", "uses" => "ServicioController@search"]);

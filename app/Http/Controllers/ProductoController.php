@@ -19,7 +19,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::paginate(15);
+        $productos = Producto::orderBy('created_at', 'desc')->paginate(15);
         return view("productos.index",compact("productos"));
     }
 
@@ -152,7 +152,7 @@ class ProductoController extends Controller
      */
     public function search($name)
     {
-        $productos = Producto::where("name",$name)->paginate(10);
+        $productos = Producto::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
         return view("productos.index",compact("productos"));
     }
 }
