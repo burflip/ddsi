@@ -9,7 +9,12 @@
 @endsection
 
 @section('elem_description')
-    Estos son todos los proyectos, ¿quieres crear un <a href="{!! route('proyecto.create') !!}">nuevo proyecto</a>?
+    @if(isset($_GET["search"]))
+        Estos son todos los proyectos que coinciden con tu búsqueda. ¿quieres crear un <a href="{!! route('proyecto.create') !!}">nuevo proyecto</a>?
+    @else
+        Estos son todos los proyectos, ¿quieres crear un <a href="{!! route('proyecto.create') !!}">nuevo proyecto</a>?
+    @endif
+
 @endsection
 
 @section('search')
@@ -23,7 +28,7 @@
         <th>Nombre</th>
         <th>Fecha</th>
         <th>Importe total</th>
-        <th>Ver</th>
+        <th class="center-align">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -33,13 +38,15 @@
             <td>{{ $proyecto->name }}</td>
             <td class="date">{{ $proyecto->created_at }}</td>
             <td>{{ $proyecto->total_amount }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('proyecto.show', ['id' => $proyecto->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td class="center-align">
+                <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('proyecto.edit', ['id' => $proyecto->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('proyecto.show', ['id' => $proyecto->id]) }}"><i class="material-icons">visibility</i></a>
+            </td>
         </tr>
     @endforeach
     </tbody>
 @endsection
 
-{{--@section('pagination')
+@section('pagination')
     {!! $proyectos->appends(Request::only('search'))->render() !!}
 @endsection
-        --}}
