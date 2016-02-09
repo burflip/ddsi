@@ -1,18 +1,17 @@
 @extends("create")
 
 @section("title")
-    Editando cliente #{{ $cliente->id }}
+    Crear una nueva factura
 @endsection
 
 @section("resource_title")
-    Editando cliente #{{ $cliente->id }} - {{ $cliente->name }}
+    Crear una nueva factura
 @endsection
 
 @section("form")
-    {!! Form::model($cliente, ["method" => "post", "route" => "cliente.store"]) !!}
-    @include("clientes._model")
+    {!! Form::open(["method" => "post", "route" => "factura.store"]) !!}
+    @include("facturas._model")
     {!! Form::close() !!}
-    @include("clientes._destroy")
 @endsection
 
 @section("scripts")

@@ -19,7 +19,7 @@ class CreateFacturasTable extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->integer('proyecto_id')->index()->unsigned()->nullable();
             $table->integer('cliente_id')->index()->unsigned()->nullable();
-            $table->integer('last_modification_user_id')->index()->unsigned()->nullable();
+            $table->integer('last_update_user_id')->index()->unsigned()->nullable();
 
             $table->string('r_invoicing_name')->nullable();
             $table->string('r_entity_type')->nullable();
@@ -52,7 +52,7 @@ class CreateFacturasTable extends Migration
             $table->foreign("user_id")
                 ->references("id")
                 ->on("users");
-            $table->foreign("last_modification_user_id")
+            $table->foreign("last_update_user_id")
                 ->references("id")
                 ->on("users");
             $table->foreign("cliente_id")

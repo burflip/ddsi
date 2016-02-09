@@ -1,18 +1,18 @@
 @extends("create")
 
 @section("title")
-    Editando cliente #{{ $cliente->id }}
+    Editando factura #{{ $factura->id }}
 @endsection
 
 @section("resource_title")
-    Editando cliente #{{ $cliente->id }} - {{ $cliente->name }}
+    Editando factura #{{ $factura->id }} - {{ $factura->name }}
 @endsection
 
 @section("form")
-    {!! Form::model($cliente, ["method" => "post", "route" => "cliente.store"]) !!}
-    @include("clientes._model")
+    {!! Form::model($factura, ["method" => "post", "route" => "factura.store"]) !!}
+    @include("facturas._model")
     {!! Form::close() !!}
-    @include("clientes._destroy")
+    @include("facturas._destroy")
 @endsection
 
 @section("scripts")

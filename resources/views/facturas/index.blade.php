@@ -9,29 +9,33 @@
 @endsection
 
 @section('elem_description')
-    Estos son todas las facturas, ¿quieres crear una <a href="{!! route('proyectos.create') !!}">nueva factura</a>?
+    @if(isset($_GET["search"]))
+        Estas son todas las facturas que coinciden con tu búsqueda. ¿quieres crear una <a href="{!! route('factura.create') !!}">nueva factura</a>?
+    @else
+        Estas son todas las facturas, ¿quieres crear una <a href="{!! route('factura.create') !!}">nueva factura</a>?
+    @endif
+
 @endsection
 
 @section('search')
-    @include('_search', ['search_route' => 'facturas.search', 'searchbox_text' => 'Buscar una factura...'])
+    @include('_search', ['search_route' => 'factura.search', 'searchbox_text' => 'Buscar un factura...'])
 @endsection
 
 @section('table')
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nombre</th>
-        <th>Fecha</th>
-        <th>Ver</th>
+        <th class="center-align">Acciones</th>
     </tr>
     </thead>
     <tbody>
     @foreach($facturas as $factura)
         <tr>
             <td>{{ $factura->id }}</td>
-            <td>{{ $factura->nombre }}</td>
-            <td>{{ $factura->fecha }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('facturas.show', ['id' => $factura->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td class="center-align">
+                <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('factura.edit', ['id' => $factura->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('factura.show', ['id' => $factura->id]) }}"><i class="material-icons">visibility</i></a>
+            </td>
         </tr>
     @endforeach
     </tbody>
