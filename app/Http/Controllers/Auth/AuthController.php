@@ -24,6 +24,8 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     var $loginPath = "/";
+    var $redirectTo = "/dashboard";
+    var $redirectPath = "/dashboard";
 
     public function redirectPath()
     {

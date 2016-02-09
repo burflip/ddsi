@@ -14,7 +14,18 @@
     <link href="/css/style.min.css" type="text/css" rel="stylesheet" media="screen"/>
 </head>
 <body @yield('body_class')>
-@yield('content')
+<div id="wrapper">
+    <div id="header">
+        @include("_nav")
+    </div>
+    <div id="content">
+        @yield("content")
+    </div>
+    <div id="footer">
+        @include('_footer')
+    </div>
+</div>
+
         <!--  Scripts-->
 <script src="/components/jquery/dist/jquery.min.js"></script>
 <script src="/components/jquery.cookie/jquery.cookie.js"></script>

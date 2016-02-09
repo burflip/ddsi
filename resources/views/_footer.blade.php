@@ -1,4 +1,4 @@
-<footer class="page-footer binding-dark">
+<footer class="page-footer">
     <div class="footer-copyright">
         <div class="container center-align">
             <div class="row">

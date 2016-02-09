@@ -1,7 +1,6 @@
 @extends('main')
 
 @section('content')
-    @include('_nav')
     <div class="container">
         <div class="row padded">
             <div class="col s12">
@@ -40,5 +39,4 @@
             </div>
         </div>
     </div>
-    @include('_footer')
 @endsection

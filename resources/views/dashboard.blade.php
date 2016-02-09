@@ -1,9 +1,9 @@
 <?php
 $dashboard_elems = [
-        route("producto.create") => ["add_database", "Crear productos"],
+        route("producto.create") => ["deployment", "Crear productos"],
         route("servicio.create") => ["add_database", "Crear servicios"],
         route("producto.index") => ["shop", "Productos"],
-        route("servicio.index") => ["shop", "Servicios"],
+        route("servicio.index") => ["accept_database", "Servicios"],
         "proyecto" => ["opened_folder", "Proyectos"],
         "proyecto/create" => ["idea", "Crear proyecto"],
         "#clientes" => ["contacts", "Agenda"],
@@ -25,7 +25,6 @@ $i=1;
 @endsection
 
 @section('content')
-    @include('_nav')
     <div class="container">
         <div class="row padded">
             <div class="col s12">
@@ -55,7 +54,6 @@ $i=1;
             </div>
         </div>
     </div>
-    @include('_footer')
 @endsection
 
 @section('scripts')
