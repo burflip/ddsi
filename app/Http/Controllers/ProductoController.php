@@ -54,7 +54,7 @@ class ProductoController extends Controller
 
     /**
      * Basic save operation used for update & store.
-     * 
+     *
      * @param $producto
      * @param Request $request
      * @param bool $save
