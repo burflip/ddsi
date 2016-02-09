@@ -19,7 +19,7 @@ class CreateProductosTable extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->integer('last_modification_user_id')->index()->unsigned();
 
-            $table->string('product_name');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price');
             $table->string('img_url')->nullable();

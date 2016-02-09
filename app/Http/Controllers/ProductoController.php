@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Producto;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all()->paginate(10);
+        return view("productos.index",compact("productos"));
     }
 
     /**
@@ -26,7 +28,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view("productos.create");
     }
 
     /**
@@ -37,7 +39,22 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = Producto::findOrNew($request->input("name"));
+        session()->flash('flash_message', 'Se ha creado el producto con éxito');
+    }
+
+    public function silentSave(&$producto, Request $request,$save = true)
+    {
+        $producto->user_id = Auth::id();
+        $producto->last_modification_user_id = Auth::id();
+        $producto->name = $request->input("name");
+        $producto->description = $request->input("description");
+        $producto->price = $request->input("price");
+        $producto->img_url = $request->input("img_url");
+        $producto->development_time = $request->input("development_time");
+        $producto->status = $request->input("status");
+        ($save) ? $producto->save() : null;
+        return $producto;
     }
 
     /**
@@ -48,7 +65,7 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

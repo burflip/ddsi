@@ -23,6 +23,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    var $loginPath = "/";
+
     public function redirectPath()
     {
         // Logic that determines where to send the user
