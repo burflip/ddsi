@@ -4,16 +4,16 @@ $dashboard_elems = [
         route("servicio.create") => ["add_database", "Crear servicios"],
         route("producto.index") => ["shop", "Productos"],
         route("servicio.index") => ["accept_database", "Servicios"],
-        "proyecto" => ["opened_folder", "Proyectos"],
-        "proyecto/create" => ["idea", "Crear proyecto"],
+        route("proyecto.index") => ["opened_folder", "Proyectos"],
+        route("proyecto.create") => ["idea", "Crear proyecto"],
         route("cliente.index") => ["contacts", "Agenda"],
         route("cliente.create") => ["good_decision", "Nuevo cliente"],
-        "#facturas" => ["filing_cabinet", "Ver facturas"],
-        "#nueva_factura" => ["invite", "Nueva factura"],
+        route("factura.index") => ["filing_cabinet", "Ver facturas"],
+        route("factura.create") => ["invite", "Nueva factura"],
         route("usuario.index") => ["address_book", "Usuarios"],
         route("usuario.create") => ["key", "Crear usuario"],
-        "presupuesto" => ["money_transfer","Presupuestos"],
-        "presupuesto/create" => ["calculator","Nuevo presupuesto"]
+        route("presupuesto.index") => ["money_transfer","Presupuestos"],
+        route("presupuesto.create") => ["calculator","Nuevo presupuesto"]
 
 ];
 $i=1;
