@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,7 @@ class ProductoController extends Controller
         }
 
         session()->flash('flash_message', 'Se ha creado el producto #'.$producto->id.' - '.$producto->name.' con éxito');
-        return redirect()->route("dashboard");
+        return redirect()->route("producto.index");
     }
 
     /**

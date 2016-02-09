@@ -35,10 +35,10 @@
     @foreach($productos as $producto)
         <tr>
             <td>{{ $producto->id }}</td>
-            <td>{{ $producto->nombre }}</td>
-            <td>{{ $producto->descripcion }}</td>
-            <td>{{ $producto->precio }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('productos.show', ['id' => $producto->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td>{{ $producto->name }}</td>
+            <td>{{ $producto->description }}</td>
+            <td>{{ $producto->price }}</td>
+            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('producto.show', ['id' => $producto->id]) }}"><i class="material-icons">visibility</i></a></td>
         </tr>
     @endforeach
     </tbody>
