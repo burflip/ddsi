@@ -45,7 +45,7 @@ class FacturaController extends Controller
 
             $factura = new Factura();
             $factura->user_id = Auth::id();
-            $this->silentSave($factura,$request);
+            self::silentSave($factura,$request);
             if($request->input("proyecto_id") != null && $request->input("proyecto_id") != "") {
                 $proyecto = Proyecto::findOrFail($request->input("proyecto_id"));
                 $factura->proyecto()->save($proyecto);
@@ -69,7 +69,7 @@ class FacturaController extends Controller
      * @param bool $save
      * @return mixed
      */
-    public function silentSave(&$factura, Request $request,$save = true)
+    public static function silentSave(&$factura, Request $request,$save = true)
     {
         $factura->last_update_user_id = Auth::id();
         $factura->aceptation_days = $request->input("aceptation_days");
@@ -135,7 +135,7 @@ class FacturaController extends Controller
     {
         try{
             $factura = Factura::findOrFail($id);
-            $this->silentSave($factura,$request);
+            self::silentSave($factura,$request);
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');
         }
