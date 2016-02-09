@@ -1,73 +1,30 @@
-@extends('index')
+@extends("show")
 
-<style>
-    textarea {
-        resize: none;
-    }
-</style>
-
-@section('title')
-    Proyecto {{$proyecto->id}}
+@section("resource_title")
+    Proyecto #{{ $proyecto->id }} - {{ $proyecto->name }}
 @endsection
 
-@section('elem_title')
-    Proyecto {{$proyecto->id}}
-@endsection
-
-@section('elem_description')
-    Datos del proyecto:
-@endsection
-
-@section('search')
-    @include('_search', ['search_route' => 'proyecto.show', 'searchbox_text' => 'Buscar un proyecto...'])
-@endsection
-
-@section('form')
-
-        <!-- User's ID output -->
-    <div class="form-group">
-        {!! Form::label('user_id','Id del usuario:') !!}
-        {!! Form::number('user_id',$proyecto -> user_id,['readonly']) !!}
+@section("data")
+    <div class="row">
+        <div class="col s12 m6">
+            <p><strong>Creado el:</strong> {{ $proyecto->created_at }}</p>
+            <p><strong>Última modificación:</strong> {{ $proyecto->updated_at }}</p>
+            <p><strong>Fecha de inicio del proyecto:</strong> {{ $proyecto->starting_date }}</p>
+            <p><strong>Fecha de finalización del proyecto:</strong> {{ $proyecto->ending_date }}</p>
+        </div>
+        <div class="col m6">
+            <p><strong>ID del usuario que lo creó:</strong> {{ $proyecto->user_id }}</p>
+            {{--<p><strong>Email del usuario que lo creó:</strong> {{ $proyecto->user_id->email }}</p>--}}
+            <p><strong>ID del usuario de su última modificación:</strong> {{ $proyecto->last_modification_user_id }}</p>
+            {{--<p><strong>Email del usuario de su última modificación:</strong> {{ $proyecto->last_modification_user_id->email }}</p>--}}
+        </div>
     </div>
-
-    <!-- Project's name input -->
-    <div class="form-group">
-        {!! Form::label('name','Nombre del proyecto:') !!}
-        {!! Form::text('name',$proyecto -> name,['readonly']) !!}
+    <div class="row">
+        <div class="col s12">
+            <p><strong>Nombre:</strong> {{ $proyecto->name }}</p>
+            <p><strong>Importe total facturado del proyecto:</strong> {{ $proyecto->total_amount }}</p>
+            <p><strong>URL de imagen:</strong> {{ $proyecto->img_url }}</p>
+            <p><strong>Notas:</strong> {{ $proyecto->notes }}</p>
+        </div>
     </div>
-
-    <!-- Image's URL input -->
-    <div class="form-group">
-        {!! Form::label('img_url','URL de la imagen asociada:') !!}
-        {!! Form::text('img_url',$proyecto -> img_url,['readonly']) !!}
-    </div>
-
-    <!-- Total amount input -->
-    <div class="form-group">
-        {!! Form::label('total_amount','Importe total del proyecto:') !!}
-        {!! Form::number('total_amount',$proyecto -> total_amount,['readonly']) !!}
-    </div>
-
-    <!-- Starting date input -->
-    <div class="form-group">
-        {!! Form::label('starting_date','Fecha de inicio del proyecto:') !!}
-        {!! Form::input('date','starting_date',$proyecto -> starting_date,['readonly']) !!}
-    </div>
-
-    <!-- Ending date input -->
-    <div class="form-group">
-        {!! Form::label('ending_date','Fecha de finalización del proyecto:') !!}
-        {!! Form::input('date','ending_date',$proyecto -> ending_date,['readonly']) !!}
-    </div>
-
-    <!-- Notes input -->
-    <div class="form-group">
-        {!! Form::label('notes','Notas:') !!}
-        {!! Form::textarea('notes',$proyecto -> notes) !!}
-    </div>
-    <p>
-        <!-- Submit bottom -->
-        <a href="{{route('proyecto.edit',$proyecto->id)}}"class="btn">Modificar proyecto</a>
-    </p>
-
 @endsection
