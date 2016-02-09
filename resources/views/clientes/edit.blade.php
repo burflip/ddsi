@@ -1,18 +1,18 @@
 @extends("create")
 
 @section("title")
-    Editando usuario #{{ $usuario->id }}
+    Editando cliente #{{ $cliente->id }}
 @endsection
 
 @section("resource_title")
-    Editando usuario #{{ $usuario->id }} - {{ $usuario->name }}
+    Editando cliente #{{ $cliente->id }} - {{ $cliente->name }}
 @endsection
 
 @section("form")
-    {!! Form::model($usuario, ["method" => "post", "route" => "usuario.store"]) !!}
-    @include("usuarios._model")
+    {!! Form::model($cliente, ["method" => "post", "route" => "cliente.store"]) !!}
+    @include("clientes._model")
     {!! Form::close() !!}
-    @include("usuarios._destroy")
+    @include("clientes._destroy")
 @endsection
 
 @section("scripts")

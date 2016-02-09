@@ -54,3 +54,4 @@ Route::resource("usuario","UsuarioController");
 Route::get("producto/buscar/{name}",["as" => "producto.search", "uses" => "ProductoController@search"]);
 Route::get("servicio/buscar/{name}",["as" => "servicio.search", "uses" => "ServicioController@search"]);
 Route::get("usuario/buscar/{name}",["as" => "usuario.search", "uses" => "UsuarioController@search"]);
+Route::get("cliente/buscar/{name}",["as" => "cliente.search", "uses" => "ClienteController@search"]);
