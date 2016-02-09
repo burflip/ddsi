@@ -1,7 +1,7 @@
 <?php
 $menu_elems = [
-        "#" => "Panel",
-        "#d" => "Mi cuenta"
+        route("dashboard") => "Panel",
+        route("logout") => "Cerrar Sesión"
 ]
 ?>
 <div class="navbar-fixed">

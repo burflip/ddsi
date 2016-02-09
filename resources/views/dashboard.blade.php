@@ -10,8 +10,8 @@ $dashboard_elems = [
         "#nuevo_cliente" => ["good_decision", "Nuevo cliente"],
         "#facturas" => ["filing_cabinet", "Ver facturas"],
         "#nueva_factura" => ["invite", "Nueva factura"],
-        "#usuarios" => ["address_book", "Mis usuarios"],
-        "#nuevo_usuario" => ["key", "Nuevo usuario"],
+        route("usuario.index") => ["address_book", "Usuarios"],
+        route("usuario.create") => ["key", "Crear usuario"],
         "presupuesto" => ["money_transfer","Presupuestos"],
         "presupuesto/create" => ["calculator","Nuevo presupuesto"]
 
