@@ -9,7 +9,12 @@
 @endsection
 
 @section('elem_description')
-    Estos son todos los presupuestos, ¿quieres crear un <a href="{!! route('presupuesto.create') !!}">nuevo presupuesto</a>?
+    @if(isset($_GET["search"]))
+        Estos son todos los presupuestos que coinciden con tu búsqueda. ¿quieres crear un <a href="{!! route('presupuesto.create') !!}">nuevo presupuesto</a>?
+    @else
+        Estos son todos los presupuestos, ¿quieres crear un <a href="{!! route('presupuesto.create') !!}">nuevo presupuesto</a>?
+    @endif
+
 @endsection
 
 @section('search')
@@ -20,25 +25,28 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nombre cliente</th>
+        <th>Nombre</th>
         <th>Fecha</th>
-        <th>Total</th>
-        <th>Ver</th>
+        <th>Importe total</th>
+        <th class="center-align">Acciones</th>
     </tr>
     </thead>
     <tbody>
     @foreach($presupuestos as $presupuesto)
         <tr>
             <td>{{ $presupuesto->id }}</td>
-            <td>{{ $presupuesto->cliente->nombre }}</td>
-            <td>{{ $presupuesto->created_at }}</td>
-            <td>{{ $presupuesto->fecha }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('presupuestos.show', ['id' => $presupuesto->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td>{{ $presupuesto->name }}</td>
+            <td class="date">{{ $presupuesto->created_at }}</td>
+            <td>{{ $presupuesto->total_amount }}</td>
+            <td class="center-align">
+                <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('presupuesto.edit', ['id' => $presupuesto->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('presupuesto.show', ['id' => $presupuesto->id]) }}"><i class="material-icons">visibility</i></a>
+            </td>
         </tr>
     @endforeach
     </tbody>
 @endsection
 
-{{--@section('pagination')
+@section('pagination')
     {!! $presupuestos->appends(Request::only('search'))->render() !!}
-@endsection --}}
+@endsection

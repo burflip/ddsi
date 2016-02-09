@@ -1,13 +1,22 @@
-@extends('index')
+@extends("create")
 
-@section('title')
-    Crear presupuesto
+@section("title")
+    Crear un nuevo presupuesto
 @endsection
 
-@section('elem_title')
-    Nuevo presupuesto
+@section("resource_title")
+    Crear un nuevo presupuesto
 @endsection
 
-@section('elem_description')
-    Introduce los datos del presupuesto a crear.
+@section("form")
+    {!! Form::open(["method" => "post", "route" => "presupuesto.store"]) !!}
+    @include("presupuestos._model")
+    {!! Form::close() !!}
+@endsection
+
+@section("scripts")
+    @parent
+    <script>
+        $('.datepicker').pickadate();
+    </script>
 @endsection
