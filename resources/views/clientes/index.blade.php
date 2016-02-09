@@ -1,48 +1,52 @@
 @extends('index')
 
 @section('title')
-    Lista de clientes
+    Lista de usuarios
 @endsection
 
 @section('elem_title')
-    Clientes
+    Usuarios
 @endsection
 
 @section('elem_description')
-    Estos son todos los clientes, ¿quieres crear un <a href="{!! route('clientes.create') !!}">nuevo cliente</a>?
+    @if(isset($_GET["search"]))
+        Estos son todos los usuarios que coinciden con tu búsqueda. ¿quieres crear un <a href="{!! route('usuario.create') !!}">nuevo usuario</a>?
+    @else
+        Estos son todos los usuarios, ¿quieres crear un <a href="{!! route('usuario.create') !!}">nuevo usuario</a>?
+    @endif
+
 @endsection
 
 @section('search')
-    @include('_search', ['search_route' => 'clientes.search', 'searchbox_text' => 'Buscar un cliente...'])
+    @include('_search', ['search_route' => 'usuario.search', 'searchbox_text' => 'Buscar un usuario...'])
 @endsection
 
 @section('table')
     <thead>
     <tr>
         <th>ID</th>
+        <th>Email</th>
         <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>NIF</th>
-        <th>Tipo de cliente</th>
-        <th>Fecha</th>
-        <th>Ver</th>
+        <th>Rol</th>
+        <th class="center-align">Acciones</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($clientes as $cliente)
+    @foreach($usuarios as $usuario)
         <tr>
-            <td>{{ $cliente->id }}</td>
-            <td>{{ $cliente->nombre }}</td>
-            <td>{{ $cliente->apellidos }}</td>
-            <td>{{ $cliente->nif }}</td>
-            <td>{{ $cliente->tipo_cliente }}</td>
-            <td>{{ $cliente->created_at }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('clientes.show', ['id' => $cliente->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td>{{ $usuario->id }}</td>
+            <td>{{ $usuario->email }}</td>
+            <td>{{ $usuario->name }}</td>
+            <td>{{ $usuario->roles()->get()->first()->display_name }}</td>
+            <td class="center-align">
+                <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('usuario.edit', ['id' => $usuario->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('usuario.show', ['id' => $usuario->id]) }}"><i class="material-icons">visibility</i></a>
+            </td>
         </tr>
     @endforeach
     </tbody>
 @endsection
 
 @section('pagination')
-    {!! $clientes->appends(Request::only('search'))->render() !!}
+    {!! $usuarios->appends(Request::only('search'))->render() !!}
 @endsection

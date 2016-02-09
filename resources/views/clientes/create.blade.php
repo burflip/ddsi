@@ -1,18 +1,17 @@
 @extends("create")
 
 @section("title")
-    Editando usuario #{{ $usuario->id }}
+    Crear un nuevo usuario
 @endsection
 
 @section("resource_title")
-    Editando usuario #{{ $usuario->id }} - {{ $usuario->name }}
+    Crear un nuevo usuario
 @endsection
 
 @section("form")
-    {!! Form::model($usuario, ["method" => "post", "route" => "usuario.store"]) !!}
+    {!! Form::open(["method" => "post", "route" => "usuario.store"]) !!}
     @include("usuarios._model")
     {!! Form::close() !!}
-    @include("usuarios._destroy")
 @endsection
 
 @section("scripts")
