@@ -137,7 +137,7 @@ class PresupuestoController extends Controller
             session()->flash('flash_message', 'Ha habido un error');
         }
 
-        session()->flash('flash_message', 'Se ha modificado el prespuesto #'.$presupuesto->id.' con éxito');
+        session()->flash('flash_message', 'Se ha actualizado el prespuesto #'.$presupuesto->id.' con éxito');
         return redirect()->route("dashboard");
     }
 
