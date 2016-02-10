@@ -114,7 +114,7 @@ class ProyectoController extends Controller
             session()->flash('flash_message', 'Ha habido un error');
         }
 
-        session()->flash('flash_message', 'Se ha modificado el proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
+        session()->flash('flash_message', 'Se ha actualizado el proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
         return redirect()->route("dashboard");
 
     }
