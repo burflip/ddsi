@@ -124,7 +124,7 @@ class ClienteController extends Controller
             session()->flash('flash_message', 'Ha habido un error');
         }
 
-        session()->flash('flash_message', 'Se ha creado el cliente #'.$cliente->id.' - '.$cliente->name.' con éxito');
+        session()->flash('flash_message', 'Se ha actualizado el cliente #'.$cliente->id.' - '.$cliente->name.' con éxito');
         return redirect()->route("dashboard");
     }
 
