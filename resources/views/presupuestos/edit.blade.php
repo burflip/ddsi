@@ -9,7 +9,7 @@
 @endsection
 
 @section("form")
-    {!! Form::model($presupuesto, ["method" => "post", "route" => "presupuesto.store"]) !!}
+    {!! Form::model($presupuesto, ["method" => "put", "route" => array("presupuesto.update",$presupuesto->id)]) !!}
     @include("presupuestos._model")
     {!! Form::close() !!}
     @include("presupuestos._destroy")
