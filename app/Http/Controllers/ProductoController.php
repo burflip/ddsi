@@ -114,7 +114,7 @@ class ProductoController extends Controller
             session()->flash('flash_message', 'Ha habido un error');
         }
 
-        session()->flash('flash_message', 'Se ha creado el producto #'.$producto->id.' - '.$producto->name.' con éxito');
+        session()->flash('flash_message', 'Se ha actualizado el producto #'.$producto->id.' - '.$producto->name.' con éxito');
         return redirect()->route("dashboard");
     }
 
