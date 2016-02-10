@@ -9,7 +9,7 @@
 @endsection
 
 @section("form")
-    {!! Form::model($proyecto, ["method" => "post", "route" => "proyecto.store"]) !!}
+    {!! Form::model($proyecto, ["method" => "put", "route" => array("proyecto.update",$proyecto->id)]) !!}
     @include("proyectos._model")
     {!! Form::close() !!}
     @include("proyectos._destroy")
