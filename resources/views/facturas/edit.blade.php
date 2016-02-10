@@ -9,7 +9,7 @@
 @endsection
 
 @section("form")
-    {!! Form::model($factura, ["method" => "post", "route" => "factura.store"]) !!}
+    {!! Form::model($factura, ["method" => "put", "route" => array("factura.update",$factura->id)]) !!}
     @include("facturas._model")
     {!! Form::close() !!}
     @include("facturas._destroy")
