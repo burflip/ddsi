@@ -9,7 +9,7 @@
 @endsection
 
 @section("form")
-    {!! Form::model($usuario, ["method" => "post", "route" => "usuario.store"]) !!}
+    {!! Form::model($usuario, ["method" => "put", "route" => array("usuario.update",$usuario->id)]) !!}
     @include("usuarios._model")
     {!! Form::close() !!}
     @include("usuarios._destroy")
