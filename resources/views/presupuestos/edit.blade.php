@@ -5,7 +5,7 @@
 @endsection
 
 @section("resource_title")
-    Editando presupuesto #{{ $presupuesto->id }} - {{ $presupuesto->name }}
+    Editando presupuesto #{{ $presupuesto->id }}
 @endsection
 
 @section("form")
