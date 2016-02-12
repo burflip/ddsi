@@ -17,7 +17,7 @@ class CreateProyectosTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id')->index()->unsigned();
-            $table->integer('last_modification_user_id')->index()->unsigned();
+            $table->integer('last_update_user_id')->index()->unsigned()->nullable();
 
             $table->string('name');
             $table->string('img_url')->nullable();
