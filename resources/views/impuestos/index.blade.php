@@ -9,24 +9,18 @@
 @endsection
 
 @section('elem_description')
-    Estos son todos los impuestos, ¿quieres crear un <a href="{!! route('impuestos.create') !!}">nuevo impuesto</a>?
+    Estos son todos los impuestos, ¿quieres crear un <a href="{!! route('impuesto.create') !!}">nuevo impuesto</a>?
 @endsection
 
 @section('search')
-    @include('_search', ['search_route' => 'impuestos.search', 'searchbox_text' => 'Buscar un impuesto...'])
+    @include('_search', ['search_route' => 'impuesto.show', 'searchbox_text' => 'Buscar un impuesto...'])
 @endsection
 
-<!-- Nombre del campo field -->
-<div class="input-field col s12">
-    {!! Form::text("nombre", null, ["id" => "nombre","class" => "validate"]) !!}
-    {!! Form::label("nombre", "Nombre del campo:") !!}
-</div>
 @section('table')
     <thead>
     <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Fecha</th>
         <th>Fecha</th>
         <th>Ver</th>
     </tr>
@@ -35,9 +29,12 @@
     @foreach($impuestos as $impuesto)
         <tr>
             <td>{{ $impuesto->id }}</td>
-            <td>{{ $impuesto->nombre }}</td>
-            <td>{{ $impuesto->fecha }}</td>
-            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('impuestos.show', ['id' => $impuesto->id]) }}"><i class="material-icons">visibility</i></a></td>
+            <td>{{ $impuesto->name }}</td>
+            <td>{{ $impuesto->created_at }}</td>
+            <td>
+                <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('impuesto.edit', ['id' => $impuesto->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('impuesto.show', ['id' => $impuesto->id]) }}"><i class="material-icons">visibility</i></a>
+            </td>
         </tr>
     @endforeach
     </tbody>

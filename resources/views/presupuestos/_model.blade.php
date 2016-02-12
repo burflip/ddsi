@@ -1,40 +1,59 @@
 <div class="row">
-    <!-- Name field -->
+
+    <div class="col s12">
+        <h3>Datos de cliente:</h3>
+    </div>
+
+    <!-- Proyect field -->
     <div class="input-field col s12 m6">
-        {!! Form::text("name", null, ["id" => "name","class" => "validate"]) !!}
-        {!! Form::label("name", "Nombre de producto:*") !!}
+        {!! Form::text("proyecto_id", null, ["id" => "proyecto_id","class" => "validate"]) !!}
+        {!! Form::label("proyecto_id", "Asociar a ID de proyecto:") !!}
     </div>
 
-    <!-- Price field -->
+    <!-- Client field -->
     <div class="input-field col s12 m6">
-        {!! Form::text("price", null, ["id" => "price","class" => "validate"]) !!}
-        {!! Form::label("price", "Precio:*") !!}
+        {!! Form::text("cliente_id", null, ["id" => "cliente_id","class" => "validate"]) !!}
+        {!! Form::label("cliente_id", "Asociar a ID de cliente (dejar en blanco si asociada a proyecto):") !!}
     </div>
 
-    <!-- Description field -->
-    <div class="input-field col s12">
-        {!! Form::textarea("description", null, ["id" => "description","class" => "materialize-textarea"]) !!}
-        {!! Form::label("description", "Descripción de producto") !!}
-    </div>
-
-    <!-- IMG_URL field -->
+    <!-- Aceptation field -->
     <div class="input-field col s12 m6">
-        {!! Form::text("img_url", null, ["id" => "img_url","class" => "validate"]) !!}
-        {!! Form::label("img_url", "URL de imagen:") !!}
+        {!! Form::text("aceptation_days", null, ["id" => "aceptation_days","class" => "validate"]) !!}
+        {!! Form::label("aceptation_days", "Días para aceptación:") !!}
     </div>
 
-    <!-- DEvelopment Time field -->
+    <!-- Percentage field -->
     <div class="input-field col s12 m6">
-        {!! Form::text("development_time", null, ["id" => "development_time","class" => "validate"]) !!}
-        {!! Form::label("development_time", "Tiempo de desarrollo:") !!}
+        {!! Form::text("percentage_discount", null, ["id" => "percentage_discount","class" => "validate"]) !!}
+        {!! Form::label("percentage_discount", "Descuento en porcentaje:") !!}
     </div>
 
-    <!-- Status field -->
-    <div class="input-field col s12">
-        {!! Form::text("status", null, ["id" => "status","class" => "validate"]) !!}
-        {!! Form::label("status", "Estado del producto:") !!}
+    <!-- Amount discount field -->
+    <div class="input-field col s12 m6">
+        {!! Form::text("amount_discount", null, ["id" => "amount_discount","class" => "validate"]) !!}
+        {!! Form::label("amount_discount", "Descuento sobre el total:") !!}
     </div>
-    
+
+    <!-- Notas field -->
+    <div class="input-field col s12 m6">
+        {!! Form::text("notes", null, ["id" => "notes","class" => "validate"]) !!}
+        {!! Form::label("notes", "Notas:") !!}
+    </div>
+
+    <div class="col s12">
+        <h3>Datos del presupuesto:</h3>
+    </div>
+
+    <div class="col s12">
+        <h4>Emisor</h4>
+    </div>
+    @include("presupuestos._invoicing_data",["prefix" => "e_"])
+    <div class="col s12">
+        <h4>Receptor</h4>
+    </div>
+    @include("presupuestos._invoicing_data",["prefix" => "r_"])
+
+
     <div class="col s12">
         {!! Form::button("Guardar", ["type" => "submit", "class" => "btn waves-effect waves-light right indigo"]) !!}
     </div>
