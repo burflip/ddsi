@@ -13,7 +13,10 @@ $dashboard_elems = [
         route("usuario.index") => ["address_book", "Usuarios"],
         route("usuario.create") => ["key", "Crear usuario"],
         route("presupuesto.index") => ["money_transfer","Presupuestos"],
-        route("presupuesto.create") => ["calculator","Nuevo presupuesto"]
+        route("presupuesto.create") => ["calculator","Nuevo presupuesto"],
+        route("impuesto.index") => ["list","Impuestos"],
+        route("impuesto.create") => ["donate","Nuevo impuesto"]
+
 
 ];
 $i=1;
