@@ -13,8 +13,6 @@
         <div class="col s12 m6">
             <p><strong>Creado el:</strong> {{ $impuesto->created_at }}</p>
             <p><strong>Última modificación:</strong> {{ $impuesto->updated_at }}</p>
-            <p><strong>Fecha de inicio del impuesto:</strong> {{ $impuesto->starting_date }}</p>
-            <p><strong>Fecha de finalización del impuesto:</strong> {{ $impuesto->ending_date }}</p>
         </div>
         <div class="col m6">
             <p><strong>ID del usuario que lo creó:</strong> {{ $impuesto->user_id }}</p>
