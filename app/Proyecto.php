@@ -20,4 +20,14 @@ class Proyecto extends Model
     {
         $this->hasMany('App\Clientes');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function last_update_user()
+    {
+        return $this->belongsTo('App\User','last_update_user_id');
+    }
 }
