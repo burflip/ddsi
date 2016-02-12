@@ -63,7 +63,7 @@ class ProyectoController extends Controller
      */
     public function silentSave(&$proyecto, Request $request,$save = true)
     {
-        $proyecto->last_modification_user_id=Auth::id();
+        $proyecto->last_update_user_id=Auth::id();
         $proyecto->name=$request->input('name');
         $proyecto->img_url=$request->input('img_url');
         $proyecto->total_amount=$request->input('total_amount');
