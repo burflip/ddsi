@@ -1,14 +1,18 @@
 <div class="row">
     <!-- Name field -->
-    <div class="input-field col s12 m6">
+    <div class="input-field col s12">
         {!! Form::text("name", null, ["id" => "name","class" => "validate"]) !!}
         {!! Form::label("name", "Nombre del impuesto:*") !!}
     </div>
 
     <!-- Aplicable to all field -->
-    <div class="input-field col s12 m6">
-        {!! Form::number("aplicable_to_all", null, ["id" => "aplicable_to_all","class" => "validate"]) !!}
-        {!! Form::label("aplicable_to_all", "Aplicable a todos los productos y servicios:*") !!}
+    <div class="col s12 m6">
+        <div class="col s12">
+            <p>Aplicable a todos los productos y servicios:*</p>
+        </div>
+        <div class="col s12 input-field">
+            {!! Form::select("aplicable_to_all", ["No","Si"],"No", ["id" => "aplicable_to_all","class" => "browser-default"]) !!}
+        </div>
     </div>
 
     <!-- Percentage field -->

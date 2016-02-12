@@ -1,5 +1,9 @@
 @extends("show")
 
+@section("title")
+    Mostrando a {{ $impuesto->name }}
+@endsection
+
 @section("resource_title")
     Impuesto #{{ $impuesto->id }} - {{ $impuesto->name }}
 @endsection
@@ -22,7 +26,12 @@
     <div class="row">
         <div class="col s12">
             <p><strong>Nombre:</strong> {{ $impuesto->name }}</p>
-            <p><strong>Aplicable a todos los productos y servicios:</strong> {{ $impuesto->aplicable_to_all }}</p>
+            <p><strong>Aplicable a todos los productos y servicios:</strong>
+                @if($impuesto->aplicable_to_all=="0")
+                    No</p>
+                @else
+                    Si</p>
+                @endif
             <p><strong>Porcentaje de descuento:</strong> {{ $impuesto->percentage }}</p>
             <p><strong>Cantidad fija:</strong> {{ $impuesto->fixed_amount }}</p>
         </div>

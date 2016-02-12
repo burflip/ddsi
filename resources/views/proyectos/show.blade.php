@@ -1,5 +1,9 @@
 @extends("show")
 
+@section('title')
+    Mostrando a {{ $proyecto->name }}
+@endsection
+
 @section("resource_title")
     Proyecto #{{ $proyecto->id }} - {{ $proyecto->name }}
 @endsection
