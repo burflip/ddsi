@@ -5,22 +5,16 @@
         {!! Form::label("name", "Nombre del proyecto:*") !!}
     </div>
 
-    <!-- Total amount -->
+    <!-- User id field -->
     <div class="input-field col s12 m6">
-        {!! Form::text("total_amount", null, ["id" => "total_amount","class" => "validate"]) !!}
-        {!! Form::label("total_amount", "Importe total facturado:") !!}
+        {!! Form::text("client_id", null, ["id" => "client_id","class" => "validate"]) !!}
+        {!! Form::label("client_id", "Asociar a ID de cliente:") !!}
     </div>
 
     <!-- Notes field -->
     <div class="input-field col s12">
         {!! Form::textarea("notes", null, ["id" => "notes","class" => "materialize-textarea"]) !!}
         {!! Form::label("notes", "Notas:") !!}
-    </div>
-
-    <!-- IMG_URL field -->
-    <div class="input-field col s12 m6">
-        {!! Form::text("img_url", null, ["id" => "img_url","class" => "validate"]) !!}
-        {!! Form::label("img_url", "URL de imagen:") !!}
     </div>
 
     <!-- Starting date field -->
@@ -34,6 +28,13 @@
     <div class="col s12 m6">
         {!! Form::label("ending_date", "Fecha de finalización del proyecto*:") !!}
         {!! Form::date("ending_date", null, ["id" => "ending_date", "class" => "datepicker"]) !!}
+    </div>
+
+
+    <!-- IMG_URL field -->
+    <div class="input-field col s12 m6">
+        {!! Form::text("img_url", null, ["id" => "img_url","class" => "validate"]) !!}
+        {!! Form::label("img_url", "URL de imagen:") !!}
     </div>
     
     <div class="col s12">

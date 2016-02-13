@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
+use App\Factura;
 use App\Proyecto;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -43,13 +45,15 @@ class ProyectoController extends Controller
     {
         try{
             $proyecto = new Proyecto();
+            $cliente = Cliente::findOrFail($request->input("client_id"));
             $proyecto->user_id = Auth::id();
-            $this->silentSave($proyecto,$request);
+            $this->silentSave($proyecto,$request,false);
+            $proyecto->cliente()->associate($cliente);
+            $proyecto->save();
+            session()->flash('flash_message', 'Se ha creado el proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');
         }
-
-        session()->flash('flash_message', 'Se ha creado el proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
         return redirect()->route("proyecto.index");
     }
 
@@ -66,9 +70,8 @@ class ProyectoController extends Controller
         $proyecto->last_update_user_id=Auth::id();
         $proyecto->name=$request->input('name');
         $proyecto->img_url=$request->input('img_url');
-        $proyecto->total_amount=$request->input('total_amount');
-        $proyecto->starting_date=$request->input('starting_date');
-        $proyecto->ending_date=$request->input('ending_date');
+        $proyecto->starting_date=$request->input('starting_date_submit');
+        $proyecto->ending_date=$request->input('ending_date_submit');
         $proyecto->notes=$request->input('notes');
         ($save) ? $proyecto->save() : null;
         return $proyecto;
@@ -155,6 +158,44 @@ class ProyectoController extends Controller
     {
         $proyectos = Proyecto::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
         return view("proyectos.index",compact("proyectos"));
+    }
+
+    public function associateInvoice($id)
+    {
+        return view("proyectos.associate_invoice",compact("id"));
+    }
+
+    public function addInvoice(Request $request, $id)
+    {
+        try{
+            $proyecto = Proyecto::findOrFail($id);
+            $invoice = Factura::findOrFail($request->input("invoice_id"));
+            $proyecto->last_update_user_id = Auth::id();
+            $proyecto->facturas()->save($invoice);
+            session()->flash('flash_message', 'Se ha asociado la factura #'.$request->input("invoice_id").' al proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
+        } catch(ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+        return redirect()->route("proyecto.associate.invoice",["id" => $id]);
+    }
+
+    public function associateProposal($id)
+    {
+        return view("proyectos.associate_proposal",compact("id"));
+    }
+
+    public function addProposal(Request $request, $id)
+    {
+        try{
+            $proyecto = Proyecto::findOrFail($id);
+            $proposal = Factura::findOrFail($request->input("proposal_id"));
+            $proyecto->last_update_user_id = Auth::id();
+            $proyecto->facturas()->save($proposal);
+            session()->flash('flash_message', 'Se ha asociado el presupuesto #'.$request->input("proposal_id").' al proyecto #'.$proyecto->id.' - '.$proyecto->name.' con éxito');
+        } catch(ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+        return redirect()->route("proyecto.associate.proposal",["id" => $id]);
     }
 
 }

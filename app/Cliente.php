@@ -321,12 +321,12 @@ class Cliente extends Model
 
     public function facturas()
     {
-        $this->hasMany('App\Factura');
+        return $this->hasMany('App\Factura');
     }
 
     public function proyectos()
     {
-        $this->belongsToMany('App\Proyecto');
+        return $this->hasMany('App\Proyecto');
     }
 
     public function user()

@@ -4,21 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int|null user_id
+ */
 class Proyecto extends Model
 {
     public function presupuestos()
     {
-        $this->hasMany('App\Presupuesto');
+        return $this->hasMany('App\Presupuesto');
     }
 
     public function facturas()
     {
-        $this->hasMany('App\Facturas');
+        return $this->hasMany('App\Factura');
     }
 
-    public function clientes()
+    public function cliente()
     {
-        $this->hasMany('App\Clientes');
+        return $this->belongsTo('App\Cliente', 'client_id');
     }
 
     public function user()

@@ -8,7 +8,7 @@ class Servicio extends Model
 {
     public function facturas()
     {
-        $this->belongsToMany('App\Factura');
+        return $this->belongsToMany('App\Factura');
     }
     public function user()
     {

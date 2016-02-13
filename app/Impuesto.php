@@ -8,7 +8,7 @@ class Impuesto extends Model
 {
     public function facturas()
     {
-        $this->belongsToMany('App\Facturas');
+        return $this->belongsToMany('App\Facturas');
     }
 
     public function user()

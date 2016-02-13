@@ -8,26 +8,26 @@ class Factura extends Model
 {
     public function productos()
     {
-        $this->hasMany('App\Producto');
+        return $this->hasMany('App\Producto');
     }
 
     public function servicios()
     {
-        $this->hasMany('App\Servicio');
+        return $this->hasMany('App\Servicio');
     }
 
     public function impuestos()
     {
-        $this->hasMany('App\Impuesto');
+        return $this->hasMany('App\Impuesto');
     }
 
     public function cliente()
     {
-        $this->belongsTo('App\Cliente');
+        return $this->belongsTo('App\Cliente');
     }
 
     public function proyecto()
     {
-        $this->belongsTo('App\Proyecto');
+        return $this->belongsTo('App\Proyecto');
     }
 }

@@ -12,24 +12,23 @@ class CreateProyectosTable extends Migration
      */
     public function up()
     {
-        Schema::create('proyectos', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create("proyectos", function (Blueprint $table) {
+            $table->increments("id");
             $table->timestamps();
 
-            $table->integer('user_id')->index()->unsigned();
-            $table->integer('client_id')->index()->unsigned();
-            $table->integer('last_update_user_id')->index()->unsigned()->nullable();
+            $table->integer("user_id")->index()->unsigned();
+            $table->integer("client_id")->index()->unsigned();
+            $table->integer("last_update_user_id")->index()->unsigned()->nullable();
 
-            $table->string('name');
-            $table->string('img_url')->nullable();
-            $table->decimal('total_amount')->nullable();
-            $table->date('starting_date');
-            $table->date('ending_date');
-            $table->text('notes')->nullable();
+            $table->string("name");
+            $table->string("img_url")->nullable();
+            $table->date("starting_date");
+            $table->date("ending_date");
+            $table->text("notes")->nullable();
 
         });
 
-        Schema::table('proyectos', function(Blueprint $table)
+        Schema::table("proyectos", function(Blueprint $table)
         {
             $table->foreign("user_id")
                 ->references("id")
@@ -47,6 +46,6 @@ class CreateProyectosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('proyectos');
+        Schema::drop("proyectos");
     }
 }
