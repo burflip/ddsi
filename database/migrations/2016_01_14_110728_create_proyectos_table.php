@@ -17,6 +17,7 @@ class CreateProyectosTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id')->index()->unsigned();
+            $table->integer('client_id')->index()->unsigned();
             $table->integer('last_update_user_id')->index()->unsigned()->nullable();
 
             $table->string('name');
@@ -33,7 +34,7 @@ class CreateProyectosTable extends Migration
             $table->foreign("user_id")
                 ->references("id")
                 ->on("users");
-            $table->foreign("last_modification_user_id")
+            $table->foreign("last_update_user_id")
                 ->references("id")
                 ->on("users");
         });

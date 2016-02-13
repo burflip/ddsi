@@ -50,6 +50,12 @@ class CreateClientesTable extends Migration
                 ->references("id")
                 ->on("users");
         });
+
+        Schema::table("proyectos",function(Blueprint $table) {
+            $table->foreign("client_id")
+                ->references("id")
+                ->on("clientes");
+        });
     }
 
     /**
