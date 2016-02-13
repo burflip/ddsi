@@ -13,6 +13,7 @@
         <div class="col s12 m6">
             <p><strong>Creado el:</strong> {{ $factura->created_at }}</p>
             <p><strong>Última modificación:</strong> {{ $factura->updated_at }}</p>
+            @if($factura->cliente != null)<p><strong>ID Cliente:</strong><a href="{{ route("clientes.show",["id" => $factura->cliente->id]) }}">{{ $factura->cliente->id }}</a></p>@endif
             <p><strong>Nombre:</strong> {{ $factura->name }}</p>
             <p><strong>Apellidos:</strong> {{ $factura->surname }}</p>
             <p><strong>NIF:</strong> {{ $factura->nif }}</p>
@@ -50,6 +51,19 @@
             <p><strong>Código postal:</strong> {{ $factura->zip_code }}</p>
             <p><strong>Dirección:</strong> {{ $factura->address_1 }}</p>
             <p><strong>Dirección línea 2:</strong> {{ $factura->address_2 }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="collection">
+                @foreach($productos as $producto)
+                    @include("facturas._single_product",["elem" => $producto->name, "url" => route("producto.show",[$producto->id]), "price" => $producto->price])
+                @endforeach
+                @foreach($servicios as $servicio)
+                    @include("facturas._single_product",["elem" => $servicio->name, "url" => route("servicio.show",[$servicio->id]), "price" => $servicio->price])
+                @endforeach
+            </div>
+
         </div>
     </div>
 @endsection

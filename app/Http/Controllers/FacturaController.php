@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Factura;
+use App\Producto;
 use App\Proyecto;
+use App\Servicio;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -53,6 +55,11 @@ class FacturaController extends Controller
                 $cliente = Cliente::findOrFail($request->input("cliente_id"));
                 $factura->cliente()->save($cliente);
             }
+            $productos = array_filter(explode(",",$request->input("products_ids")));
+            $servicios = array_filter(explode(",",$request->input("services_ids")));
+
+            $factura->productos()->sync($productos);
+            $factura->servicios()->sync($servicios);
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');
         }
@@ -109,7 +116,9 @@ class FacturaController extends Controller
     public function show($id)
     {
         $factura = Factura::findOrFail($id);
-        return view("facturas.show",compact("factura"));
+        $productos = $factura->productos;
+        $servicios = $factura->servicios;
+        return view("facturas.show",compact("factura","productos","servicios"));
     }
 
     /**
@@ -121,6 +130,19 @@ class FacturaController extends Controller
     public function edit($id)
     {
         $factura = Factura::findOrFail($id);
+        $productos = $factura->productos;
+        $servicios = $factura->servicios;
+        $ids_productos = [];
+        $ids_servicios = [];
+        foreach($productos as $producto) {
+            array_push($ids_productos,$producto->id);
+        }
+        foreach($servicios as $servicio) {
+            array_push($ids_servicios,$servicio->id);
+        }
+        $factura->products_ids = implode(",",$ids_productos);
+        $factura->services_ids = implode(",",$ids_servicios);
+
         return view("facturas.edit",compact("factura"));
     }
 
@@ -136,6 +158,10 @@ class FacturaController extends Controller
         try{
             $factura = Factura::findOrFail($id);
             self::silentSave($factura,$request);
+            $productos = array_filter(explode(",",$request->input("products_ids")));
+            $servicios = array_filter(explode(",",$request->input("services_ids")));
+            $factura->productos()->sync($productos);
+            $factura->servicios()->sync($servicios);
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');
         }

@@ -157,4 +157,15 @@ class ServicioController extends Controller
         $servicios = Servicio::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
         return view("servicios.index",compact("servicios"));
     }
+
+    public function get($id)
+    {
+        try {
+            $servicio = Servicio::findOrFail($id);
+        } catch(NotFoundHttpException $e) {
+            abort(404);
+        }
+
+        return response()->json($servicio);
+    }
 }

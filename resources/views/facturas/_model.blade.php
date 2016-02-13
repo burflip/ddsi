@@ -3,12 +3,6 @@
     <div class="col s12">
         <h3>Datos de cliente:</h3>
     </div>
-    
-    <!-- Proyect field -->
-    <div class="input-field col s12 m6">
-        {!! Form::text("proyecto_id", null, ["id" => "proyecto_id","class" => "validate"]) !!}
-        {!! Form::label("proyecto_id", "Asociar a ID de proyecto:") !!}
-    </div>
 
     <!-- Client field -->
     <div class="input-field col s12 m6">
@@ -35,9 +29,30 @@
     </div>
 
     <!-- Notas field -->
-    <div class="input-field col s12 m6">
+    <div class="input-field col s12">
         {!! Form::text("notes", null, ["id" => "notes","class" => "validate"]) !!}
         {!! Form::label("notes", "Notas:") !!}
+    </div>
+
+    <!-- IDs de productos field -->
+    <div class="input-field col s12 m6">
+        {!! Form::text("products_ids", null, ["id" => "products_ids","class" => "validate"]) !!}
+        {!! Form::label("products_ids", "IDs de los productos separados por comas:") !!}
+    </div>
+
+    <!-- IDs de servicios field -->
+    <div class="input-field col s12 m6">
+        {!! Form::text("services_ids", null, ["id" => "services_ids","class" => "validate"]) !!}
+        {!! Form::label("services_ids", "IDs de los servicios separados por comas:") !!}
+    </div>
+
+    <div class="col s12">
+        <a id="get_total" class="waves-effect waves-light btn indigo">Calcular total</a>
+        <a id="apply_discounts" class="waves-effect waves-light btn indigo">Aplicar descuentos</a>
+    </div>
+
+    <div class="col s12">
+        <p class="flow-text">Total de factura: <strong><span id="total_amount">0</span></strong>€</p>
     </div>
 
     <div class="col s12">

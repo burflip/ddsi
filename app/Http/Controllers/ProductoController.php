@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductoController extends Controller
 {
@@ -154,5 +155,16 @@ class ProductoController extends Controller
     {
         $productos = Producto::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
         return view("productos.index",compact("productos"));
+    }
+
+    public function get($id)
+    {
+        try {
+            $producto = Producto::findOrFail($id);
+        } catch(NotFoundHttpException $e) {
+            abort(404);
+        }
+
+        return response()->json($producto);
     }
 }

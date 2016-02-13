@@ -18,5 +18,6 @@
     @parent
     <script>
         $('.datepicker').pickadate();
+        initInvoiceCreationHandlers();
     </script>
 @endsection

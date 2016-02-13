@@ -59,5 +59,8 @@ Route::get("factura/buscar/{name}",["as" => "factura.search", "uses" => "Factura
 
 Route::get("proyecto/{id}/asociar/factura",["as" => "proyecto.associate.invoice", "uses" => "ProyectoController@associateInvoice"]);
 Route::post("proyecto/{id}/asociar/factura",["as" => "proyecto.add.invoice", "uses" => "ProyectoController@addInvoice"]);
-Route::get("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.associate.proposal", "uses" => "FacturaController@associateProposal"]);
-Route::post("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.add.proposal", "uses" => "FacturaController@addProposal"]);
+Route::get("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.associate.proposal", "uses" => "ProyectoController@associateProposal"]);
+Route::post("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.add.proposal", "uses" => "ProyectoController@addProposal"]);
+
+Route::get("api/producto/{id}",["as" => "producto.get.json", "uses" => "ProductoController@get"]);
+Route::get("api/servicio/{id}",["as" => "servicio.get.json", "uses" => "ServicioController@get"]);
