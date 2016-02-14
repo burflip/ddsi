@@ -46,6 +46,7 @@
         {!! Form::label("services_ids", "IDs de los servicios separados por comas:") !!}
     </div>
 
+    <!-- Totales -->
     <div class="col s12">
         <a id="get_total" class="waves-effect waves-light btn indigo">Calcular total</a>
         <a id="apply_discounts" class="waves-effect waves-light btn indigo">Aplicar descuentos</a>

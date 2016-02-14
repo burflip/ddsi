@@ -45,14 +45,10 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         try{
-
             $factura = new Factura();
             $factura->user_id = Auth::id();
             self::silentSave($factura,$request);
-            if($request->input("proyecto_id") != null && $request->input("proyecto_id") != "") {
-                $proyecto = Proyecto::findOrFail($request->input("proyecto_id"));
-                $factura->proyecto()->save($proyecto);
-            } elseif($request->input("cliente_id") != null && $request->input("cliente_id") != "") {
+            if($request->input("cliente_id") != null && $request->input("cliente_id") != "") {
                 $cliente = Cliente::findOrFail($request->input("cliente_id"));
                 $factura->cliente()->associate($cliente);
             }
