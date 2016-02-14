@@ -13,9 +13,10 @@
         <div class="col s12 m6">
             <p><strong>Creado el:</strong> {{ $presupuesto->created_at }}</p>
             <p><strong>Última modificación:</strong> {{ $presupuesto->updated_at }}</p>
-            <p><strong>Nombre:</strong> {{ $presupuesto->name }}</p>
-            <p><strong>Apellidos:</strong> {{ $presupuesto->surname }}</p>
-            <p><strong>NIF:</strong> {{ $presupuesto->nif }}</p>
+            <p><strong>Días de aceptación:</strong> {{ $presupuesto->aceptation_days }}</p>
+            <p><strong>Descuento en %:</strong> {{ $presupuesto->percentage_discount }}%</p>
+            <p><strong>Descuento en cantidad:</strong> {{ $presupuesto->amount_discount }}€</p>
+            <p><strong>Notas:</strong> {{ $presupuesto->notes }}</p>
         </div>
         <div class="col s12 m6">
             <p><strong>ID del usuario que lo creó:</strong> {{ $presupuesto->user_id }}</p>
@@ -25,14 +26,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12 m6">
-            <p><strong>URL de imagen:</strong> {{ $presupuesto->img_url }}</p>
-            <p><strong>Tipo de presupuesto:</strong> {{ $presupuesto->type }}</p>
-            <p><strong>Teléfono:</strong> {{ $presupuesto->phone }}</p>
-            <p><strong>Móvil:</strong> {{ $presupuesto->mobile }}</p>
-            <p><strong>Email:</strong> {{ $presupuesto->email }}</p>
-            <p><strong>Notas:</strong> {{ $presupuesto->notes }}</p>
-        </div>
         <div class="col m6">
             <p><strong>Cliente asociado:</strong> {{ $presupuesto->cliente_id }}</p>
         </div>

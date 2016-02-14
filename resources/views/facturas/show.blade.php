@@ -14,25 +14,16 @@
             <p><strong>Creado el:</strong> {{ $factura->created_at }}</p>
             <p><strong>Última modificación:</strong> {{ $factura->updated_at }}</p>
             @if($factura->cliente != null)<p><strong>ID Cliente:</strong><a href="{{ route("clientes.show",["id" => $factura->cliente->id]) }}">{{ $factura->cliente->id }}</a></p>@endif
-            <p><strong>Días de aceptación:</strong> {{ $factura->name }}</p>
-            <p><strong>Apellidos:</strong> {{ $factura->surname }}</p>
-            <p><strong>NIF:</strong> {{ $factura->nif }}</p>
+            <p><strong>Días de aceptación:</strong> {{ $factura->aceptation_days }}</p>
+            <p><strong>Descuento en %:</strong> {{ $factura->percentage_discount }}%</p>
+            <p><strong>Descuento en cantidad:</strong> {{ $factura->amount_discount }}€</p>
+            <p><strong>Notas:</strong> {{ $factura->notes }}</p>
         </div>
         <div class="col s12 m6">
             <p><strong>ID del usuario que lo creó:</strong> {{ $factura->user_id }}</p>
             <p><strong>Email del usuario que lo creó:</strong> {{ $factura->user->email }}</p>
             <p><strong>ID del usuario de su última modificación:</strong> {{ $factura->last_update_user_id }}</p>
             <p><strong>Email del usuario de su última modificación:</strong> {{ $factura->last_update_user->email }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 m6">
-            <p><strong>URL de imagen:</strong> {{ $factura->img_url }}</p>
-            <p><strong>Tipo de factura:</strong> {{ $factura->type }}</p>
-            <p><strong>Teléfono:</strong> {{ $factura->phone }}</p>
-            <p><strong>Móvil:</strong> {{ $factura->mobile }}</p>
-            <p><strong>Email:</strong> {{ $factura->email }}</p>
-            <p><strong>Notas:</strong> {{ $factura->notes }}</p>
         </div>
     </div>
     <div class="row">
