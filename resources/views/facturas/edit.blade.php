@@ -20,5 +20,6 @@
     <script>
         $('.datepicker').pickadate();
         initInvoiceCreationHandlers();
+        initInvoicingDataValidation();
     </script>
 @endsection

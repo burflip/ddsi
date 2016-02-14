@@ -63,11 +63,11 @@
     <div class="col s12">
         <h4>Emisor</h4>
     </div>
-    @include("presupuestos._invoicing_data",["prefix" => "e_"])
+    @include("facturas._invoicing_data",["prefix" => "e_"])
     <div class="col s12">
         <h4>Receptor</h4>
     </div>
-    @include("presupuestos._invoicing_data",["prefix" => "r_"])
+    @include("facturas._invoicing_data",["prefix" => "r_"])
 
 
     <div class="col s12">

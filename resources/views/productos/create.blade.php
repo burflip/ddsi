@@ -13,3 +13,8 @@
     @include("productos._model")
     {!! Form::close() !!}
 @endsection
+
+@section("scripts")
+    @parent
+    <script>initProductValidation()</script>
+@endsection

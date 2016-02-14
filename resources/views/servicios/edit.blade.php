@@ -19,5 +19,6 @@
     @parent
     <script>
         $('.datepicker').pickadate();
+        initServiceValidation();
     </script>
 @endsection

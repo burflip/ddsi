@@ -13,12 +13,12 @@
 @if($prefix != "")
     <!-- NIF field -->
     <div class="input-field col s12">
-        {!! Form::text("nif", null, ["id" => "nif","class" => "validate"]) !!}
-        {!! Form::label("nif", "NIF:") !!}
+        {!! Form::text($prefix."nif", null, ["id" => $prefix."nif","class" => "validate"]) !!}
+        {!! Form::label($prefix."nif", "NIF:") !!}
     </div>
 @endif
 
-<div class="col s12 m6">
+<div class="col s12">
     <div class="col s12">
         <p>País:</p>
     </div>
@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="col s12 m6">
+<div class="col s12 m6 hidden">
     <div class="col s12">
         <p>Provincia:</p>
     </div>

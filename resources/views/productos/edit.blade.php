@@ -14,3 +14,8 @@
     {!! Form::close() !!}
     @include("productos._destroy")
 @endsection
+
+@section("scripts")
+    @parent
+    <script>initProductValidation()</script>
+@endsection

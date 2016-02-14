@@ -18,6 +18,6 @@
 @section("scripts")
     @parent
     <script>
-        $('.datepicker').pickadate();
+        initTaxValidation();
     </script>
 @endsection

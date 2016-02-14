@@ -88,6 +88,68 @@ function initInvoiceCreationHandlers()
     }
 }
 
+function initInvoicingDataValidation()
+{
+    $("form").materialid({
+        fields:
+        {
+            name:{
+                validators:{
+                    notEmpty:{}
+                }
+            },
+            cliente_id:{
+                validators:{
+                    digits:{}
+                }
+            },
+            aceptation_days:{
+                validators:{
+                    digits:{}
+                }
+            },
+            percentage_discount:{
+                validators:{
+                    digits:{}
+                }
+            },
+            amount_discount:{
+                validators:{
+                    numeric:{}
+                }
+            },
+            e_nif:{
+                validators:{
+                    nif:{}
+                }
+            },
+            r_nif:{
+                validators:{
+                    nif:{}
+                }
+            },
+            e_zip_code:{
+                validators:{
+                    length:{
+                        exact:5,
+                        msg:"Debe contener exactamente 5 caracteres"
+                    }
+                }
+            },
+            r_zip_code:{
+                validators:{
+                    length:{
+                        exact:5,
+                        msg:"Debe contener exactamente 5 caracteres"
+                    }
+                }
+            }
+        },
+        config:{
+            locale:"es_ES"
+        }
+    });
+}
 
 
 

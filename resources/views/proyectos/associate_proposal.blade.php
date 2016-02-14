@@ -23,3 +23,10 @@
     </div>
     {!! Form::close() !!}
 @endsection
+
+@section("scripts")
+    @parent
+    <script>
+        initProyectAssociateProposalValidation();
+    </script>
+@endsection

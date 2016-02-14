@@ -15,7 +15,7 @@ if(isset($usuario)) {
 
     <!-- Contraseña field -->
     <div class="input-field col s12 m6">
-        {!! Form::password("password", null, ["id" => "password","class" => "validate"]) !!}
+        {!! Form::password("password", ["id" => "password","class" => "validate"]) !!}
         {!! Form::label("password", "Contraseña:*") !!}
     </div>
 
