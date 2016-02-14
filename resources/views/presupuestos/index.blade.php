@@ -40,6 +40,7 @@
             <td>{{ $presupuesto->total_amount }}</td>
             <td class="center-align">
                 <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('presupuesto.edit', ['id' => $presupuesto->id]) }}"><i class="material-icons">create</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light indigo tooltipped" href="{{ route('presupuesto.associate.invoice', ['id' => $presupuesto->id]) }}" data-position="top" data-delay="50" data-tooltip="Asociar factura"><i class="material-icons">receipt</i></a>
                 <a class="btn-floating btn-large waves-effect waves-light red" href="{{ route('presupuesto.show', ['id' => $presupuesto->id]) }}"><i class="material-icons">visibility</i></a>
             </td>
         </tr>

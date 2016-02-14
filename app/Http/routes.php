@@ -62,6 +62,9 @@ Route::post("proyecto/{id}/asociar/factura",["as" => "proyecto.add.invoice", "us
 Route::get("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.associate.proposal", "uses" => "ProyectoController@associateProposal"]);
 Route::post("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.add.proposal", "uses" => "ProyectoController@addProposal"]);
 
+Route::get("presupuesto/{id}/asociar/factura",["as" => "presupuesto.associate.invoice", "uses" => "PresupuestoController@associateInvoice"]);
+Route::post("presupuesto/{id}/asociar/factura",["as" => "presupuesto.add.invoice", "uses" => "PresupuestoController@addInvoice"]);
+
 Route::get("api/producto/{id}",["as" => "producto.get.json", "uses" => "ProductoController@get"]);
 Route::get("api/servicio/{id}",["as" => "servicio.get.json", "uses" => "ServicioController@get"]);
 Route::get("api/impuesto/{id}",["as" => "impuesto.get.json", "uses" => "ImpuestoController@get"]);

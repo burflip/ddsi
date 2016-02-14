@@ -33,6 +33,9 @@
             <p><strong>Email:</strong> {{ $presupuesto->email }}</p>
             <p><strong>Notas:</strong> {{ $presupuesto->notes }}</p>
         </div>
+        <div class="col m6">
+            <p><strong>Cliente asociado:</strong> {{ $presupuesto->cliente_id }}</p>
+        </div>
     </div>
     <div class="row">
         <div class="col s12">
@@ -53,35 +56,31 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s3">
-            <div class="card indigo darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Clientes:</span>
-                </div>
-                <div class="card-action indigo lighten-5 blue-text">
-                    <div class="row ">
-                        <div class="col s6">
-                            <a href="#">Cliente</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s3">
+        <div class="col s6">
             <div class="card indigo darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">Facturas:</span>
                 </div>
-                <div class="card-action indigo lighten-5 blue-text">
-                    <div class="row ">
-                        <div class="col s6">
-                            <a href="#">Factura</a>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    @foreach($facturas as $factura)
+                        <div class="row ">
+                            <div class="col s12">
+                                <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe total: {{  $importe_facturas[$factura->id] }}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
+                </div>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    <span class="card-title">Importe total:
+                        <?php
+                        $importe_total=array_sum($importe_facturas);
+                        ?>
+                        {{$importe_total}}
+                    </span>
                 </div>
             </div>
         </div>
-        <div class="col s5">
+        <div class="col s6">
             <div class="card indigo darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">Productos y/o servicios:</span>
