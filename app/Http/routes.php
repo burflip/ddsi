@@ -51,11 +51,11 @@ Route::resource("proyecto","ProyectoController");
 Route::resource("usuario","UsuarioController");
 
 
-Route::get("producto/buscar/{name}",["as" => "producto.search", "uses" => "ProductoController@search"]);
-Route::get("servicio/buscar/{name}",["as" => "servicio.search", "uses" => "ServicioController@search"]);
-Route::get("usuario/buscar/{name}",["as" => "usuario.search", "uses" => "UsuarioController@search"]);
-Route::get("cliente/buscar/{name}",["as" => "cliente.search", "uses" => "ClienteController@search"]);
-Route::get("factura/buscar/{name}",["as" => "factura.search", "uses" => "FacturaController@search"]);
+Route::post("producto/buscar",["as" => "producto.search", "uses" => "ProductoController@search"]);
+Route::post("servicio/buscar",["as" => "servicio.search", "uses" => "ServicioController@search"]);
+Route::post("usuario/buscar",["as" => "usuario.search", "uses" => "UsuarioController@search"]);
+Route::post("cliente/buscar",["as" => "cliente.search", "uses" => "ClienteController@search"]);
+Route::post("factura/buscar",["as" => "factura.search", "uses" => "FacturaController@search"]);
 
 Route::get("proyecto/{id}/asociar/factura",["as" => "proyecto.associate.invoice", "uses" => "ProyectoController@associateInvoice"]);
 Route::post("proyecto/{id}/asociar/factura",["as" => "proyecto.add.invoice", "uses" => "ProyectoController@addInvoice"]);

@@ -153,14 +153,16 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Searches for an especific product name
-     *
-     * @param $name
+     * Searches for an especific user email or id
+     * @param Request $request
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function search($name)
+    public function search(Request $request)
     {
-        $usuarios = User::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
+        $usuarios = User::where("email",'like','%'.$request->input("search").'%')
+            ->orWhere("id",$request->input("search"))
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view("usuarios.index",compact("usuarios"));
     }
 }

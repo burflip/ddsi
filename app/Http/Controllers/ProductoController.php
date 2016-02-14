@@ -147,13 +147,15 @@ class ProductoController extends Controller
 
     /**
      * Searches for an especific product name
-     *
-     * @param $name
+     * @param Request $request
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function search($name)
+    public function search(Request $request)
     {
-        $productos = Producto::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
+        $productos = Producto::where("name",'like','%'.$request->input("search").'%')
+            ->orWhere("id",$request->input("search"))
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view("productos.index",compact("productos"));
     }
 

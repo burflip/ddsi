@@ -232,14 +232,15 @@ class FacturaController extends Controller
     }
 
     /**
-     * Searches for an especific product name
-     *
-     * @param $name
+     * Searches for an especific invoice id
+     * @param Request $request
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function search($name)
+    public function search(Request $request)
     {
-        $facturas = Factura::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
-        return view("facturas.index",compact("facturas"));
+        $productos = Producto::where("id","like","%".$request->input("search")."%")
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view("productos.index",compact("productos"));
     }
 }

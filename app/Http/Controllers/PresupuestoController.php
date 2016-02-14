@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Presupuesto;
 use App\Proyecto;
 use App\Factura;
