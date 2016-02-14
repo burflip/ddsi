@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Presupuesto;
+use App\Proyecto;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;

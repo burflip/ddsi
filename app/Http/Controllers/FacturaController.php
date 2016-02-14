@@ -6,6 +6,7 @@ use App\Factura;
 use App\Producto;
 use App\Proyecto;
 use App\Servicio;
+use App\Cliente;
 use Auth;
 use Illuminate\Http\Request;
 
