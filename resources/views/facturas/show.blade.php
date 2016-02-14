@@ -40,14 +40,36 @@
         @include("facturas._invoicing_data_show",["elem" => $factura, "prefix" => "r_"])
     </div>
     <div class="row">
-        <div class="col s12">
-            <div class="collection">
-                @foreach($productos as $producto)
-                    @include("facturas._single_product",["elem" => $producto->name, "url" => route("producto.show",[$producto->id]), "price" => $producto->price])
-                @endforeach
-                @foreach($servicios as $servicio)
-                    @include("facturas._single_product",["elem" => $servicio->name, "url" => route("servicio.show",[$servicio->id]), "price" => $servicio->price])
-                @endforeach
+        <div class="col s6">
+            <div class="card indigo darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Productos:</span>
+                </div>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    <div class="row ">
+                        <div class="col s12">
+                            @foreach($productos as $producto)
+                                <p><a href="{{ route("producto.show",$producto->id) }}">{{ $producto->name }} - {{ $producto->price }}€</a></p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="card indigo darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Servicios:</span>
+                </div>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    <div class="row ">
+                        <div class="col s12">
+                            @foreach($servicios as $servicio)
+                                <p><a href="{{ route("servicio.show",$servicio->id) }}">{{ $servicio->name }} - {{ $servicio->price }}€</a></p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
