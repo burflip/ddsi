@@ -44,10 +44,18 @@
                     @foreach($facturas as $factura)
                         <div class="row ">
                             <div class="col s12">
-                                <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe total: </p>
+                                <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe total: {{  $importe_facturas[$factura->id] }}</p>
                             </div>
                         </div>
                     @endforeach
+                </div>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    <span class="card-title">Importe total: 
+                        <?php
+                            $importe_total=array_sum($importe_facturas);
+                        ?>
+                        {{$importe_total}}
+                    </span>
                 </div>
             </div>
         </div>
@@ -60,7 +68,7 @@
                     @foreach($presupuestos as $presupuesto)
                         <div class="row ">
                             <div class="col s12">
-                                <p>Presupuesto <a href="{{ route("presupuesto.show",$presupuesto->id) }}">#{{$presupuesto->id}}</a> Importe total: </p>
+                                <p>Presupuesto <a href="{{ route("presupuesto.show",$presupuesto->id) }}">#{{$presupuesto->id}}</a></p>
                             </div>
                         </div>
                     @endforeach

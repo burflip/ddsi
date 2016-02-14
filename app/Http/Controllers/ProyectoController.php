@@ -89,7 +89,11 @@ class ProyectoController extends Controller
         $proyecto=Proyecto::findOrFail($id);
         $facturas=$proyecto->facturas;
         $presupuestos=$proyecto->presupuestos;
-        return view('proyectos.show',compact('proyecto','facturas','presupuestos'));
+        $importe_facturas=Array();
+        foreach($facturas as $factura){
+            $importe_facturas[$factura->id]=FacturaController::getTotalFromInvoice($factura);
+        }
+        return view('proyectos.show',compact('proyecto','facturas','presupuestos','importe_facturas'));
     }
 
     /**
