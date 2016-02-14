@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Presupuesto;
 use App\Proyecto;
+use App\Factura;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -120,7 +121,12 @@ class PresupuestoController extends Controller
     public function show($id)
     {
         $presupuesto=Presupuesto::findOrFail($id);
-        return view('presupuestos.show',compact('presupuesto'));
+        $facturas=$presupuesto->facturas;
+        $importe_facturas=Array();
+        foreach($facturas as $factura){
+            $importe_facturas[$factura->id]=FacturaController::getTotalFromInvoice($factura);
+        }
+        return view('presupuestos.show',compact('presupuesto','facturas','importe_facturas'));
     }
 
     /**
@@ -197,6 +203,25 @@ class PresupuestoController extends Controller
     {
         $presupuesto = Presupuesto::findOrFail($id);
         return view("presupuesto.show",compact("presupuesto"));
+    }
+
+    public function associateInvoice($id)
+    {
+        return view("presupuestos.associate_invoice",compact("id"));
+    }
+
+    public function addInvoice(Request $request, $id)
+    {
+        try{
+            $presupuesto = Presupuesto::findOrFail($id);
+            $invoice = Factura::findOrFail($request->input("invoice_id"));
+            $presupuesto->last_update_user_id = Auth::id();
+            $presupuesto->facturas()->save($invoice);
+            session()->flash('flash_message', 'Se ha asociado la factura #'.$request->input("invoice_id").' al presupuesto #'.$presupuesto->id.' con éxito');
+        } catch(ModelNotFoundException $e) {
+            session()->flash('flash_message', 'Ha habido un error');
+        }
+        return redirect()->route("presupuesto.associate.invoice",["id" => $id]);
     }
 
 }
