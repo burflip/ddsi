@@ -39,21 +39,16 @@
     </div>
     <div class="row">
         <div class="col s12">
-            <h3>Datos de presupuesto</h3>
+            <h3>Datos de facturación</h3>
         </div>
-        <div class="col s12 m6">
-            <p><strong>Nombre de presupuesto:</strong> {{ $presupuesto->invoicing_name }}</p>
-            <p><strong>Tipo de entidad:</strong> {{ $presupuesto->entity_type }}</p>
-            <p><strong>NIF:</strong> {{ $presupuesto->nif }}</p>
+        <div class="col s12">
+            <h4>Datos del emisor</h4>
         </div>
-        <div class="col s12 m6">
-            <p><strong>País:</strong> {{ $presupuesto->country }}</p>
-            <p><strong>Provincia:</strong> {{ $presupuesto->state }}</p>
-            <p><strong>Ciudad:</strong> {{ $presupuesto->city }}</p>
-            <p><strong>Código postal:</strong> {{ $presupuesto->zip_code }}</p>
-            <p><strong>Dirección:</strong> {{ $presupuesto->address_1 }}</p>
-            <p><strong>Dirección línea 2:</strong> {{ $presupuesto->address_2 }}</p>
+        @include("facturas._invoicing_data_show",["elem" => $presupuesto, "prefix" => "e_"])
+        <div class="col s12">
+            <h4>Datos del receptor</h4>
         </div>
+        @include("facturas._invoicing_data_show",["elem" => $presupuesto, "prefix" => "r_"])
     </div>
     <div class="row">
         <div class="col s6">
@@ -62,21 +57,16 @@
                     <span class="card-title">Facturas:</span>
                 </div>
                 <div class="card-action indigo lighten-5 indigo-text">
-                    @foreach($facturas as $factura)
-                        <div class="row ">
-                            <div class="col s12">
+                    <div class="row ">
+                        <div class="col s12">
+                            @foreach($facturas as $factura)
                                 <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe total: {{  $importe_facturas[$factura->id] }}</p>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
                 <div class="card-action indigo lighten-5 indigo-text">
-                    <span class="card-title">Importe total:
-                        <?php
-                        $importe_total=array_sum($importe_facturas);
-                        ?>
-                        {{$importe_total}}
-                    </span>
+                    <span class="card-title">Importe total: {{ $presupuesto->importe_facturas }}€</span>
                 </div>
             </div>
         </div>
@@ -85,12 +75,21 @@
                 <div class="card-content white-text">
                     <span class="card-title">Productos y/o servicios:</span>
                 </div>
-                <div class="card-action indigo lighten-5 blue-text">
+                <div class="card-action indigo lighten-5 indigo-text">
                     <div class="row ">
-                        <div class="col s6">
-                            <a href="#">Presupuesto</a>
+                        <div class="col s12">
+                            @foreach($productos as $producto)
+                                <p><a href="{{ route("producto.show",$producto->id) }}">{{ $producto->name }} - {{ $producto->price }}€</a></p>
+                            @endforeach
+                            @foreach($servicios as $servicio)
+                                <p><a href="{{ route("servicio.show",$servicio->id) }}">{{ $servicio->name }} - {{ $servicio->price }}€</a></p>
+                            @endforeach
                         </div>
                     </div>
+                </div>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    <span class="card-title">Importe total: {{ $presupuesto->importe }}€
+                    </span>
                 </div>
             </div>
         </div>

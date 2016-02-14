@@ -14,7 +14,7 @@
             <p><strong>Creado el:</strong> {{ $factura->created_at }}</p>
             <p><strong>Última modificación:</strong> {{ $factura->updated_at }}</p>
             @if($factura->cliente != null)<p><strong>ID Cliente:</strong><a href="{{ route("clientes.show",["id" => $factura->cliente->id]) }}">{{ $factura->cliente->id }}</a></p>@endif
-            <p><strong>Nombre:</strong> {{ $factura->name }}</p>
+            <p><strong>Días de aceptación:</strong> {{ $factura->name }}</p>
             <p><strong>Apellidos:</strong> {{ $factura->surname }}</p>
             <p><strong>NIF:</strong> {{ $factura->nif }}</p>
         </div>
@@ -39,19 +39,14 @@
         <div class="col s12">
             <h3>Datos de facturación</h3>
         </div>
-        <div class="col s12 m6">
-            <p><strong>Nombre de facturación:</strong> {{ $factura->invoicing_name }}</p>
-            <p><strong>Tipo de entidad:</strong> {{ $factura->entity_type }}</p>
-            <p><strong>NIF:</strong> {{ $factura->nif }}</p>
+        <div class="col s12">
+            <h4>Datos del emisor</h4>
         </div>
-        <div class="col s12 m6">
-            <p><strong>País:</strong> {{ $factura->country }}</p>
-            <p><strong>Provincia:</strong> {{ $factura->state }}</p>
-            <p><strong>Ciudad:</strong> {{ $factura->city }}</p>
-            <p><strong>Código postal:</strong> {{ $factura->zip_code }}</p>
-            <p><strong>Dirección:</strong> {{ $factura->address_1 }}</p>
-            <p><strong>Dirección línea 2:</strong> {{ $factura->address_2 }}</p>
+        @include("facturas._invoicing_data_show",["elem" => $factura, "prefix" => "e_"])
+        <div class="col s12">
+            <h4>Datos del receptor</h4>
         </div>
+        @include("facturas._invoicing_data_show",["elem" => $factura, "prefix" => "r_"])
     </div>
     <div class="row">
         <div class="col s12">

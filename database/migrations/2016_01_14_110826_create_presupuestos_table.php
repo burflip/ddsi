@@ -24,7 +24,7 @@ class CreatePresupuestosTable extends Migration
             $table->string('r_invoicing_name')->nullable();
             $table->string('r_entity_type')->nullable();
             $table->string('r_nif',9)->nullable();
-            $table->tinyInteger('r_country')->nullable();
+            $table->string('r_country',2)->nullable();
             $table->tinyInteger('r_state')->nullable();
             $table->string('r_city')->nullable();
             $table->string('r_zip_code',5)->nullable();
@@ -34,7 +34,7 @@ class CreatePresupuestosTable extends Migration
             $table->string('e_invoicing_name')->nullable();
             $table->string('e_entity_type')->nullable();
             $table->string('e_nif',9)->nullable();
-            $table->tinyInteger('e_country')->nullable();
+            $table->string('e_country',2)->nullable();
             $table->tinyInteger('e_state')->nullable();
             $table->string('e_city')->nullable();
             $table->string('e_zip_code',5)->nullable();
@@ -56,6 +56,12 @@ class CreatePresupuestosTable extends Migration
                 ->references("id")
                 ->on("users");
         });
+
+        Schema::table("facturas",function(Blueprint $table) {
+            $table->foreign("presupuesto_id")
+                ->references("id")
+                ->on("presupuestos");
+        });
     }
 
     /**
@@ -65,6 +71,9 @@ class CreatePresupuestosTable extends Migration
      */
     public function down()
     {
+        Schema::table("facturas",function(Blueprint $table) {
+            $table->dropForeign("facturas_presupuesto_id_foreign");
+        });
         Schema::drop('presupuestos');
     }
 }

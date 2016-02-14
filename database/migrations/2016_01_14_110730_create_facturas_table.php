@@ -25,7 +25,7 @@ class CreateFacturasTable extends Migration
             $table->string('r_invoicing_name')->nullable();
             $table->string('r_entity_type')->nullable();
             $table->string('r_nif',9)->nullable();
-            $table->tinyInteger('r_country')->nullable();
+            $table->string('r_country',2)->nullable();
             $table->tinyInteger('r_state')->nullable();
             $table->string('r_city')->nullable();
             $table->string('r_zip_code',5)->nullable();
@@ -35,7 +35,7 @@ class CreateFacturasTable extends Migration
             $table->string('e_invoicing_name')->nullable();
             $table->string('e_entity_type')->nullable();
             $table->string('e_nif',9)->nullable();
-            $table->tinyInteger('e_country')->nullable();
+            $table->string('e_country',2)->nullable();
             $table->tinyInteger('e_state')->nullable();
             $table->string('e_city')->nullable();
             $table->string('e_zip_code',5)->nullable();
@@ -62,9 +62,6 @@ class CreateFacturasTable extends Migration
             $table->foreign("proyecto_id")
                 ->references("id")
                 ->on("proyectos");
-            $table->foreign("presupuesto_id")
-                ->references("id")
-                ->on("presupuestos");
         });
     }
 

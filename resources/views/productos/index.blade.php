@@ -36,7 +36,7 @@
         <tr>
             <td>{{ $producto->id }}</td>
             <td>{{ $producto->name }}</td>
-            <td>{{ $producto->description }}</td>
+            <td class="truncate">{{ $producto->description }}</td>
             <td>{{ $producto->price }}</td>
             <td class="center-align">
                 <a class="btn-floating btn-large waves-effect waves-light deep-orange" href="{{ route('producto.edit', ['id' => $producto->id]) }}"><i class="material-icons">create</i></a>

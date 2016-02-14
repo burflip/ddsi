@@ -32,7 +32,7 @@
         <p>Provincia:</p>
     </div>
     <div class="col s12 input-field">
-        {!! Form::select($prefix."province", App\Cliente::$provinces, null, ["id" => $prefix."province", "class" => "browser-default"]) !!}
+        {!! Form::select($prefix."state", App\Cliente::$provinces, null, ["id" => $prefix."state", "class" => "browser-default"]) !!}
     </div>
 </div>
 

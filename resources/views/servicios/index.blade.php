@@ -26,7 +26,7 @@
     <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Descripción</th>
+        <th class="truncate">Descripción</th>
         <th>Período de facturación (días)</th>
         <th>Precio</th>
         <th class="center-align">Acciones</th>
