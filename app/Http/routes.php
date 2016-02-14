@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Entrust::routeNeedsRole('dashboard*',['administrativo','admin','financiero'],Redirect::to('/'),false);
 Route::get('dashboard', function()
 {
     $username = Auth::user()->name;
