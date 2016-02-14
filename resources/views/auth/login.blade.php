@@ -28,7 +28,7 @@
         @endif
 
         <div class="col s12">
-            {!! Form::submit("Entrar", ["class" => "btn waves-effect waves-light"]) !!}
+            {!! Form::button("Entrar", ["type" => "submit", "class" => "btn waves-effect waves-light"]) !!}
         </div>
 
         <div class="col s12">

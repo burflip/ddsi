@@ -13,7 +13,7 @@
         <div class="col s12 m6">
             <p><strong>Creado el:</strong> {{ $factura->created_at }}</p>
             <p><strong>Última modificación:</strong> {{ $factura->updated_at }}</p>
-            @if($factura->cliente != null)<p><strong>ID Cliente:</strong><a href="{{ route("clientes.show",["id" => $factura->cliente->id]) }}">{{ $factura->cliente->id }}</a></p>@endif
+            @if($factura->cliente != null)<p><strong>ID Cliente:</strong><a href="{{ route("cliente.show",["id" => $factura->cliente->id]) }}">{{ $factura->cliente->id }}</a></p>@endif
             <p><strong>Días de aceptación:</strong> {{ $factura->aceptation_days }}</p>
             <p><strong>Descuento en %:</strong> {{ $factura->percentage_discount }}%</p>
             <p><strong>Descuento en cantidad:</strong> {{ $factura->amount_discount }}€</p>

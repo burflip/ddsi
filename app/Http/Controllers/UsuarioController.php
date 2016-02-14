@@ -70,7 +70,8 @@ class UsuarioController extends Controller
     {
         $usuario->name = $request->input("name");
         $usuario->email = $request->input("email");
-        $usuario->password = $request->input("password");
+        $usuario->password = bcrypt($request->input("password"));
+        $usuario->remember_token = str_random(10);
         $usuario->notes = $request->input("notes");
         $usuario->status = $request->input("status");
         ($save) ? $usuario->save() : null;

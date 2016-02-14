@@ -74,4 +74,9 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    protected function getFailedLoginMessage()
+    {
+        return 'Esas credenciales son erróneas';
+    }
 }
