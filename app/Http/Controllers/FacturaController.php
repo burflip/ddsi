@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Factura;
 use App\Producto;
 use App\Proyecto;
@@ -53,19 +54,59 @@ class FacturaController extends Controller
                 $factura->proyecto()->save($proyecto);
             } elseif($request->input("cliente_id") != null && $request->input("cliente_id") != "") {
                 $cliente = Cliente::findOrFail($request->input("cliente_id"));
-                $factura->cliente()->save($cliente);
+                $factura->cliente()->associate($cliente);
             }
-            $productos = array_filter(explode(",",$request->input("products_ids")));
-            $servicios = array_filter(explode(",",$request->input("services_ids")));
-
-            $factura->productos()->sync($productos);
-            $factura->servicios()->sync($servicios);
+            $this->syncMany($factura,$request);
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');
         }
 
         session()->flash('flash_message', 'Se ha creado la factura #'.$factura->id.' con éxito');
         return redirect()->route("factura.index");
+    }
+
+    /**
+     * Syncs many to many relationships
+     *
+     * @param $factura
+     * @param Request $request
+     */
+    private function syncMany(&$factura,Request $request)
+    {
+        $productos = array_filter(explode(",",$request->input("products_ids")));
+        $servicios = array_filter(explode(",",$request->input("services_ids")));
+        $impuestos = array_filter(explode(",",$request->input("taxes_ids")));
+        $factura->productos()->sync($productos);
+        $factura->servicios()->sync($servicios);
+        $factura->impuestos()->sync($impuestos);
+    }
+
+    /**
+     * Gets invoice total from attached products and services.
+     * It mind taxes.
+     * @param Factura $factura
+     * @return int|mixed
+     */
+    public static function getTotalFromInvoice(Factura &$factura) {
+        $total = 0;
+        foreach($factura->productos as $producto) {
+            $total += $producto->price;
+        }
+        foreach($factura->servicios as $servicio) {
+            $total += $servicio->price;
+        }
+
+
+        $total -= ($total*($factura->percentage_discount/100));
+
+        $total -= $factura->amount_discount;
+
+        foreach($factura->impuestos as $impuesto){
+            $total += ($total*($impuesto->percentage/100));
+            $total += $impuesto->fixed_amount;
+        }
+
+        return round($total,2);
     }
 
     /**
@@ -118,7 +159,9 @@ class FacturaController extends Controller
         $factura = Factura::findOrFail($id);
         $productos = $factura->productos;
         $servicios = $factura->servicios;
-        return view("facturas.show",compact("factura","productos","servicios"));
+        $impuestos = $factura->impuestos;
+        $total = self::getTotalFromInvoice($factura);
+        return view("facturas.show",compact("factura","productos","servicios","impuestos","total"));
     }
 
     /**
@@ -158,10 +201,7 @@ class FacturaController extends Controller
         try{
             $factura = Factura::findOrFail($id);
             self::silentSave($factura,$request);
-            $productos = array_filter(explode(",",$request->input("products_ids")));
-            $servicios = array_filter(explode(",",$request->input("services_ids")));
-            $factura->productos()->sync($productos);
-            $factura->servicios()->sync($servicios);
+            $this->syncMany($factura,$request);
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');
         }

@@ -63,7 +63,21 @@
                     @include("facturas._single_product",["elem" => $servicio->name, "url" => route("servicio.show",[$servicio->id]), "price" => $servicio->price])
                 @endforeach
             </div>
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <p class="flow-text">Impuestos aplicables</p>
+        </div>
+        <div class="col s12">
+            @foreach($impuestos as $impuesto)
+                <a href="{{ route("impuesto.show",[$impuesto->id]) }}">{{ $impuesto->name }}</a>
+            @endforeach
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <p class="flow-text">Total de factura: <strong>{{ $total }}</strong>€</p>
         </div>
     </div>
 @endsection

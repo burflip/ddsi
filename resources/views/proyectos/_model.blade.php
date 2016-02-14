@@ -8,7 +8,7 @@
     <!-- User id field -->
     <div class="input-field col s12 m6">
         {!! Form::text("client_id", null, ["id" => "client_id","class" => "validate"]) !!}
-        {!! Form::label("client_id", "Asociar a ID de cliente:") !!}
+        {!! Form::label("client_id", "Asociar a ID de cliente:*") !!}
     </div>
 
     <!-- Notes field -->
@@ -21,7 +21,6 @@
     <div class="col s12 m6">
         {!! Form::label("starting_date", "Fecha de inicio del proyecto*:") !!}
         {!! Form::date("starting_date", null, ["id" => "starting_date","class" => "datepicker"]) !!}
-
     </div>
 
     <!-- Ending date field -->

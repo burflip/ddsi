@@ -55,6 +55,12 @@
         <p class="flow-text">Total de factura: <strong><span id="total_amount">0</span></strong>€</p>
     </div>
 
+    <!-- Taxes ids field -->
+    <div class="input-field col s12">
+        {!! Form::text("taxes_ids", null, ["id" => "taxes_ids","class" => "validate"]) !!}
+        {!! Form::label("taxes_ids", "IDs de los impuestos separados por comas:") !!}
+    </div>
+
     <div class="col s12">
         <h3>Datos de facturación:</h3>
     </div>

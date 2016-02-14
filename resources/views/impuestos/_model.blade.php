@@ -18,7 +18,7 @@
     <!-- Percentage field -->
     <div class="input-field col s12">
         {!! Form::number("percentage", null, ["id" => "percentage","class" => "materialize-textarea"]) !!}
-        {!! Form::label("percentage", "Porcentaje de descuento:*") !!}
+        {!! Form::label("percentage", "Porcentaje de impuesto:*") !!}
     </div>
 
     <!-- Fixed amount field -->

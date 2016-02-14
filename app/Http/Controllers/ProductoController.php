@@ -157,6 +157,10 @@ class ProductoController extends Controller
         return view("productos.index",compact("productos"));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function get($id)
     {
         try {

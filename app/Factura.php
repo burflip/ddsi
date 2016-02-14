@@ -4,6 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed productos
+ * @property mixed servicios
+ * @property mixed percentage_discount
+ * @property mixed amount_discount
+ * @property mixed impuestos
+ */
 class Factura extends Model
 {
     public function productos()

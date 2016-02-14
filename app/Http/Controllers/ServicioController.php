@@ -158,6 +158,10 @@ class ServicioController extends Controller
         return view("servicios.index",compact("servicios"));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function get($id)
     {
         try {

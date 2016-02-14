@@ -130,9 +130,28 @@ class ImpuestoController extends Controller
         return redirect()->route("impuesto.index");
     }
 
+    /**
+     * @param $name
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function search($name)
     {
         $impuestos = Impuesto::where("name",$name)->orderBy('created_at', 'desc')->paginate(10);
         return view("impuestos.index",compact("impuestos"));
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get($id)
+    {
+        try {
+            $producto = Producto::findOrFail($id);
+        } catch(NotFoundHttpException $e) {
+            abort(404);
+        }
+
+        return response()->json($producto);
     }
 }

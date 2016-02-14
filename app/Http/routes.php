@@ -64,3 +64,4 @@ Route::post("proyecto/{id}/asociar/presupuesto",["as" => "proyecto.add.proposal"
 
 Route::get("api/producto/{id}",["as" => "producto.get.json", "uses" => "ProductoController@get"]);
 Route::get("api/servicio/{id}",["as" => "servicio.get.json", "uses" => "ServicioController@get"]);
+Route::get("api/impuesto/{id}",["as" => "impuesto.get.json", "uses" => "ImpuestoController@get"]);
