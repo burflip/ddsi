@@ -38,6 +38,11 @@ class Factura extends Model
         return $this->belongsTo('App\Proyecto');
     }
 
+    public function presupuesto()
+    {
+        return $this->belongsTo('App\Presupuesto');
+    }
+
     public function last_update_user()
     {
         return $this->belongsTo('App\User','last_update_user_id');

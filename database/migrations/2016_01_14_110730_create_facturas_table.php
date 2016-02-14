@@ -18,6 +18,7 @@ class CreateFacturasTable extends Migration
 
             $table->integer('user_id')->index()->unsigned();
             $table->integer('proyecto_id')->index()->unsigned()->nullable();
+            $table->integer('presupuesto_id')->index()->unsigned()->nullable();
             $table->integer('cliente_id')->index()->unsigned()->nullable();
             $table->integer('last_update_user_id')->index()->unsigned()->nullable();
 
@@ -61,6 +62,9 @@ class CreateFacturasTable extends Migration
             $table->foreign("proyecto_id")
                 ->references("id")
                 ->on("proyectos");
+            $table->foreign("presupuesto_id")
+                ->references("id")
+                ->on("presupuestos");
         });
     }
 
