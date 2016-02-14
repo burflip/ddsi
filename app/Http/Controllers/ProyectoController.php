@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cliente;
 use App\Factura;
 use App\Proyecto;
+use App\Presupuesto;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -86,7 +87,9 @@ class ProyectoController extends Controller
     public function show($id)
     {
         $proyecto=Proyecto::findOrFail($id);
-        return view('proyectos.show',compact('proyecto'));
+        $facturas=$proyecto->facturas;
+        $presupuestos=$proyecto->presupuestos;
+        return view('proyectos.show',compact('proyecto','facturas','presupuestos'));
     }
 
     /**

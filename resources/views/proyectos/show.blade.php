@@ -24,53 +24,46 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12">
+        <div class="col s12 m6">
             <p><strong>Nombre:</strong> {{ $proyecto->name }}</p>
             <p><strong>Importe total facturado del proyecto:</strong> {{ $proyecto->total_amount }}</p>
             <p><strong>URL de imagen:</strong> {{ $proyecto->img_url }}</p>
             <p><strong>Notas:</strong> {{ $proyecto->notes }}</p>
         </div>
+        <div class="col m6">
+            <p><strong>ID del cliente asociado:</strong> {{ $proyecto->client_id }}</p>
+        </div>
     </div>
     <div class="row">
-        <div class="col s4">
-            <div class="card indigo darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Clientes:</span>
-                </div>
-                <div class="card-action indigo lighten-5 blue-text">
-                    <div class="row ">
-                        <div class="col s6">
-                            <a href="#">Cliente</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s4">
+        <div class="col s6">
             <div class="card indigo darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">Facturas:</span>
                 </div>
-                <div class="card-action indigo lighten-5 blue-text">
-                    <div class="row ">
-                        <div class="col s6">
-                            <a href="#">Factura</a>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    @foreach($facturas as $factura)
+                        <div class="row ">
+                            <div class="col s12">
+                                <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe total: </p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <div class="col s4">
+        <div class="col s6">
             <div class="card indigo darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">Presupuestos:</span>
                 </div>
-                <div class="card-action indigo lighten-5 blue-text">
-                    <div class="row ">
-                        <div class="col s6">
-                            <a href="#">Presupuesto</a>
+                <div class="card-action indigo lighten-5 indigo-text">
+                    @foreach($presupuestos as $presupuesto)
+                        <div class="row ">
+                            <div class="col s12">
+                                <p>Presupuesto <a href="{{ route("presupuesto.show",$presupuesto->id) }}">#{{$presupuesto->id}}</a> Importe total: </p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
