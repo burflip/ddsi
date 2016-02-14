@@ -1,11 +1,11 @@
 @extends("show")
 
 @section("title")
-    Mostrando a {{ $impuesto->name }}
+    Monstrando {{ $impuesto->name }}
 @endsection
 
 @section("resource_title")
-    Impuesto #{{ $impuesto->id }} - {{ $impuesto->name }}
+    Impuesto #{{ $impuesto->id }}
 @endsection
 
 @section("data")

@@ -48,11 +48,11 @@ class PresupuestoController extends Controller
 
             $presupuesto = new Presupuesto();
             $presupuesto->user_id = Auth::id();
-            PresupuestoController::silentSave($presupuesto, $request);
             if ($request->input("cliente_id") != null && $request->input("cliente_id") != "") {
                 $cliente = Cliente::findOrFail($request->input("cliente_id"));
-                $presupuesto->cliente()->save($cliente);
+                $presupuesto->cliente()->associate($cliente);
             }
+            PresupuestoController::silentSave($presupuesto, $request);
             $this->syncMany($presupuesto, $request);
         } catch (ModelNotFoundException $e) {
             session()->flash('flash_message', 'Ha habido un error');

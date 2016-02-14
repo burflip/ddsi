@@ -1,11 +1,11 @@
 @extends("show")
 
 @section("title")
-    Mostrando a {{ $presupuesto->name }}
+    Mostrando Presupuesto #{{ $presupuesto->id }}
 @endsection
 
 @section("resource_title")
-    Presupuesto #{{ $presupuesto->id }} - {{ $presupuesto->name }}
+    Presupuesto #{{ $presupuesto->id }}
 @endsection
 
 @section("data")
@@ -25,11 +25,13 @@
             <p><strong>Email del usuario de su última modificación:</strong> {{ $presupuesto->last_update_user->email }}</p>
         </div>
     </div>
+    @if($presupuesto->cliente != null)
     <div class="row">
-        <div class="col m6">
-            <p><strong>Cliente asociado:</strong> {{ $presupuesto->cliente_id }}</p>
+        <div class="col s12">
+            <p><strong>Cliente asociado:</strong> <a href="{{ route("cliente.show",[$presupuesto->cliente->id]) }}">{{ $presupuesto->cliente->name }}</a> </p>
         </div>
     </div>
+    @endif
     <div class="row">
         <div class="col s12">
             <h3>Datos de facturación</h3>

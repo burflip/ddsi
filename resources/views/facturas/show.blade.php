@@ -1,11 +1,11 @@
 @extends("show")
 
 @section("title")
-    Mostrando a {{ $factura->name }}
+    Factura #{{ $factura->id }}
 @endsection
 
 @section("resource_title")
-    Factura #{{ $factura->id }} - {{ $factura->name }}
+    Factura #{{ $factura->id }}
 @endsection
 
 @section("data")
