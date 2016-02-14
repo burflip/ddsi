@@ -11,6 +11,16 @@ class Presupuesto extends Model
         return $this->hasMany('App\Factura');
     }
 
+    public function productos()
+    {
+        return $this->belongsToMany('App\Producto');
+    }
+
+    public function servicios()
+    {
+        return $this->belongsToMany('App\Servicio');
+    }
+
     public function cliente()
     {
         return $this->belongsTo('App\Cliente');

@@ -92,7 +92,6 @@ class FacturaController extends Controller
             $total += $servicio->price;
         }
 
-
         $total -= ($total*($factura->percentage_discount/100));
 
         $total -= $factura->amount_discount;
