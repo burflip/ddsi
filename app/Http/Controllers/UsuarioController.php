@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Zizaco\Entrust\Entrust;
 
 class UsuarioController extends Controller
 {
@@ -32,7 +34,11 @@ class UsuarioController extends Controller
         $r = Role::all();
         $roles = [];
         foreach($r as $role) {
-            $roles[$role["name"]] = $role["display_name"];
+            if($role["name"] == "admin" && Auth::user()->hasRole("admin")) {
+                $roles[$role["name"]] = $role["display_name"];
+            } else if($role["name"] != "admin") {
+                $roles[$role["name"]] = $role["display_name"];
+            }
         }
         return view("usuarios.create",compact("roles"));
     }
@@ -102,7 +108,11 @@ class UsuarioController extends Controller
         $r = Role::all();
         $roles = [];
         foreach($r as $role) {
-            $roles[$role["name"]] = $role["display_name"];
+            if($role["name"] == "admin" && Auth::user()->hasRole("admin")) {
+                $roles[$role["name"]] = $role["display_name"];
+            } else if($role["name"] != "admin") {
+                $roles[$role["name"]] = $role["display_name"];
+            }
         }
         return view("usuarios.edit",compact("usuario","roles"));
     }
