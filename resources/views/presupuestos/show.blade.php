@@ -55,7 +55,7 @@
                     <div class="row ">
                         <div class="col s12">
                             @foreach($facturas as $factura)
-                                <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe total: {{  $importe_facturas[$factura->id] }}</p>
+                                <p>Factura <a href="{{ route("factura.show",$factura->id) }}">#{{$factura->id}}</a> Importe: {{  $importe_facturas[$factura->id] }}€</p>
                             @endforeach
                         </div>
                     </div>

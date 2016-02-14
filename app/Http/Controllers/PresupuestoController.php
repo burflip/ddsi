@@ -75,6 +75,28 @@ class PresupuestoController extends Controller
     }
 
     /**
+     * Gets proposal total from attached products and services.
+     * It mind taxes.
+     * @param Presupuesto $presupuesto
+     * @return int|mixed
+     */
+    public static function getTotalFromProposal(Presupuesto &$presupuesto) {
+        $total = 0;
+        foreach($presupuesto->productos as $producto) {
+            $total += $producto->price;
+        }
+        foreach($presupuesto->servicios as $servicio) {
+            $total += $servicio->price;
+        }
+
+        $total -= ($total*($presupuesto->percentage_discount/100));
+
+        $total -= $presupuesto->amount_discount;
+
+        return round($total,2);
+    }
+
+    /**
      * Basic save operation used for update & store.
      *
      * @param $presupuesto
