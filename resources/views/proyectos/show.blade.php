@@ -26,7 +26,6 @@
     <div class="row">
         <div class="col s12 m6">
             <p><strong>Nombre:</strong> {{ $proyecto->name }}</p>
-            <p><strong>Importe total facturado del proyecto:</strong> {{ $proyecto->total_amount }}</p>
             <p><strong>URL de imagen:</strong> {{ $proyecto->img_url }}</p>
             <p><strong>Notas:</strong> {{ $proyecto->notes }}</p>
         </div>

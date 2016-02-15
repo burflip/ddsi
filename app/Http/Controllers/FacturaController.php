@@ -195,6 +195,10 @@ class FacturaController extends Controller
     {
         try{
             $factura = Factura::findOrFail($id);
+            if($request->input("cliente_id") != null && $request->input("cliente_id") != "") {
+                $cliente = Cliente::findOrFail($request->input("cliente_id"));
+                $factura->cliente()->associate($cliente);
+            }
             self::silentSave($factura,$request);
             $this->syncMany($factura,$request);
         } catch (ModelNotFoundException $e) {
