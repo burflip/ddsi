@@ -162,6 +162,7 @@ class ClienteController extends Controller
     public function search(Request $request)
     {
         $clientes = Cliente::where("name",'like','%'.$request->input("search").'%')
+            ->orWhere("nif",'like','%'.$request->input("search").'%')
             ->orWhere("id",$request->input("search"))
             ->orderBy('created_at', 'desc')
             ->paginate(10);

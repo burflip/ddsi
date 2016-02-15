@@ -238,9 +238,9 @@ class FacturaController extends Controller
      */
     public function search(Request $request)
     {
-        $productos = Producto::where("id","like","%".$request->input("search")."%")
+        $facturas = Factura::where("id","like","%".$request->input("search")."%")
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        return view("productos.index",compact("productos"));
+        return view("facturas.index",compact("facturas"));
     }
 }

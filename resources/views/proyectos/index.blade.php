@@ -18,7 +18,7 @@
 @endsection
 
 @section('search')
-    @include('_search', ['search_route' => 'proyecto.show', 'searchbox_text' => 'Buscar un proyecto...'])
+    @include('_search', ['search_route' => 'proyecto.search', 'searchbox_text' => 'Buscar un proyecto...'])
 @endsection
 
 @section('table')

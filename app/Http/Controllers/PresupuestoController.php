@@ -243,6 +243,14 @@ class PresupuestoController extends Controller
         return view("presupuestos.associate_invoice", compact("id"));
     }
 
+    public function search(Request $request)
+    {
+        $presupuestos = Presupuesto::where("id",'like','%'.$request->input("search").'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view("presupuestos.index",compact("presupuestos"));
+    }
+
     public function addInvoice(Request $request, $id)
     {
         try {

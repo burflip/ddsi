@@ -166,16 +166,15 @@ class ProyectoController extends Controller
         return view("productos.show", compact("proyecto"));
     }
 
-    /**
-     * Searches for an especific product name
-     *
-     * @param $name
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
-     */
-    public function search($name)
+
+
+    public function search(Request $request)
     {
-        $proyectos = Proyecto::where("name", $name)->orderBy('created_at', 'desc')->paginate(10);
-        return view("proyectos.index", compact("proyectos"));
+        $proyectos = Proyecto::where("name",'like','%'.$request->input("search").'%')
+            ->orWhere("id",$request->input("search"))
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view("proyectos.index",compact("proyectos"));
     }
 
     public function associateInvoice($id)
